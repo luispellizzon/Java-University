@@ -1,0 +1,10 @@
+package OutputHelloWorld;
+
+public class SpecialCharacters {
+
+	public static void main(String[] args) {
+		System.out.print("\t\t Hello World");
+		System.out.print("\n\n\nHello World\n\\nnHello World");
+	
+	}
+}

@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class RoomArea {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter length of the room:");
+		
+		float roomLength = sc.nextFloat();
+		
+		System.out.println("Enter width of the room");
+		
+		float roomWidth = sc.nextFloat();
+		
+		float roomSum  = roomLength * roomWidth;
+		
+		System.out.println("The room area is :" + roomSum);
+		
+		
+	}
+
+}

@@ -1,0 +1,17 @@
+package OutputHelloWorld;
+
+public class BankMenu {
+
+	public static void main(String[] args) {
+		System.out.println("\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550");
+		System.out.println("\u2551\t\t\u20AC and \u00A5 only");
+		System.out.println("\u2551");
+		System.out.print("\u2551< Withdraw Money\tDeposit Money >\n");
+		System.out.println("\u2551");
+		System.out.println("\u2551< Check Balance\t\tCancel\t  >");
+		System.out.println("\u2551");
+		System.out.print("\u255A");
+		System.out.println("\u2550\u2550\u2550\u2550\u2550\u2550");
+	}
+
+}

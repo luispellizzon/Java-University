@@ -1,0 +1,18 @@
+package OutputHelloWorld;
+
+public class MyDetails {
+
+	public static void main(String[] args) {
+//		String name = "Luis";
+//		int age = 24;
+//		String address = "Morrisons's Island Campus, Cork";
+		
+//		System.out.println("Hello, I'm " + name + " and I'm " + age + " years old");
+		
+		System.out.println("I'm Luis");
+		System.out.println("I'm studying Software Development at Morrisons's Island Campus \n");
+		System.out.println("in Cork");
+
+	}
+
+}

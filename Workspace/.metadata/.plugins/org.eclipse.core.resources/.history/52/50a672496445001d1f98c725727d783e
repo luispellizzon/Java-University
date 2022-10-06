@@ -1,0 +1,21 @@
+/*
+ 
+ * ---- Operators ---- *
+
+() n inside brackets are evaluated first ;
+* / and % highest precedence and go left to right ; 
++ and - lowest precedence and go left to right ; 
+
+*/
+
+public class Operators {
+
+	public static void main(String[] args) {
+		
+		
+		
+		System.out.println(3/4*8-4%3-7*2 );
+
+	}
+
+}

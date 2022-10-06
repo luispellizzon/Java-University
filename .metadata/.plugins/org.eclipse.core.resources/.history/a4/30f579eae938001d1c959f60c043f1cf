@@ -1,0 +1,29 @@
+package OutputHelloWorld;
+
+public class  BoxDrawing {
+	
+	public static void main(String[] args) {
+		
+		int boxLength = 38;
+		
+		System.out.print("\u2554");
+		for(int i = 0; i < boxLength; i++) {
+			System.out.print("\u2550");
+		}
+		System.out.print("\u2557\n");
+		
+	
+//		System.out.println("\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557");
+		System.out.println("\u2551\t      \u20AC and \u00A5 only\t       \u2551");
+		System.out.println("\u2551\t\t\t\t       \u2551");
+		System.out.print("\u2551< Withdraw Money\tDeposit Money >\u2551\n");
+		System.out.println("\u2551\t\t\t\t       \u2551");
+		System.out.println("\u2551< Check Balance\tCancel\t      >\u2551");
+		System.out.println("\u2551\t\t\t\t       \u2551");
+		
+		System.out.print("\u255A");
+		System.out.println("\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255D");
+	}
+	
+	
+}

@@ -1,0 +1,11 @@
+package OutputHelloWorld;
+
+public class SpecialCharacters {
+
+	public static void main(String[] args) {
+		System.out.println("\t\t Hello World");
+		System.out.println("\n\nHello World\n\n\nHello World\n");
+		System.out.println("John said: \"Anna\'s dog is missing again\"");
+		System.out.println("The source code in \"C:\\Programming Principles\\Bank\\Bank\\src");
+	}
+}
