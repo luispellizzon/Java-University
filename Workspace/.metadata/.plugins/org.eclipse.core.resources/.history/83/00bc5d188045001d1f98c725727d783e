@@ -42,23 +42,8 @@ public class RoomArea {
 //		costInMeter(metres in float ex: 3.6f);
 		
 		/*Exercise 6 */
-//		personDetails(sc);
+		personDetails(sc);
 		
-		/*Exercise 7 */
-		personWages(452783.88f);
-		
-	}
-	
-	private static void personWages(float grossPay) {
-		float tax = 0.29f;
-		float prsi = 0.07f;
-		
-		float totalTax = grossPay * tax;
-		float totalPrsi = grossPay * prsi;
-		
-		float net = grossPay - totalTax - totalPrsi;
-		
-		System.out.printf("Gross Pay: %.2f \nTotal Tax: %.2f \nTotal PRSI: %.2f \nNet Pay: %.2f", grossPay, totalTax, totalPrsi, net);
 	}
 	
 	private static void personDetails(Scanner sc) {

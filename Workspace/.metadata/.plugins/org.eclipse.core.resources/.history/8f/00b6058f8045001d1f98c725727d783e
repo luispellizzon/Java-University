@@ -45,7 +45,7 @@ public class RoomArea {
 //		personDetails(sc);
 		
 		/*Exercise 7 */
-		personWages(452783.88f);
+		personWages(350.2f);
 		
 	}
 	
@@ -58,7 +58,7 @@ public class RoomArea {
 		
 		float net = grossPay - totalTax - totalPrsi;
 		
-		System.out.printf("Gross Pay: %.2f \nTotal Tax: %.2f \nTotal PRSI: %.2f \nNet Pay: %.2f", grossPay, totalTax, totalPrsi, net);
+		System.out.printf("Gross Pay: %.2f \n Total Tax: %.2f \n Total PRSI: %2.f \n Net Pay: %.2f", grossPay, totalTax, totalPrsi, net);
 	}
 	
 	private static void personDetails(Scanner sc) {

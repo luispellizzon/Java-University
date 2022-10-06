@@ -45,7 +45,7 @@ public class RoomArea {
 //		personDetails(sc);
 		
 		/*Exercise 7 */
-		personWages(452783.88f);
+		personWages(12345.67f);
 		
 	}
 	
