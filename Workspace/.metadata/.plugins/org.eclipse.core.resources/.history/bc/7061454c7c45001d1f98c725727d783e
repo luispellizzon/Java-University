@@ -47,12 +47,6 @@ public class RoomArea {
 	}
 	
 	private static void personDetails(Scanner sc) {
-		
-		
-//		Global variables for results
-		float inchesToCm = 2.54f;
-		float stonesToKg = 6.364f;
-		
 		System.out.println("Enter your first name:");
 		String firstName = sc.next();
 		
@@ -67,20 +61,11 @@ public class RoomArea {
 		float weightInStones = sc.nextFloat();
 		
 		System.out.println("Enter your weight in pounds (the remainer number from the complete weight in stones):");
-		float weightInPounds = sc.nextFloat();
-		
-		
-//		Convert Feet to Inches and get Total inches and convert to Centimeters
-		float totalHeight = ((heightInFeet * 12) + heightInInches ) * inchesToCm ;
-		
-		
-//		Convert remainer Pounds to Stone and get Total Stones and convert to Kg
-		
-		float totalWeight = ((weightInPounds / 14) + weightInStones) * stonesToKg ;
+		float weigthInPounds = sc.nextFloat();
 		
 		
 		
-		System.out.printf("Your name is %s and you are %.2f tall and weight %.2f kgs",firstName, totalHeight, totalWeight);
+		System.out.println(firstName, heightInFeet, heightInInches, weightInStones, weigthInPounds );
 	}
 
 	private static void costInMeter(float size) {

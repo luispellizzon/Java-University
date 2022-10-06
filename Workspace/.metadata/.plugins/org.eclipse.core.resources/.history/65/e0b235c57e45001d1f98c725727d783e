@@ -48,8 +48,6 @@ public class RoomArea {
 	
 	private static void personDetails(Scanner sc) {
 		
-		
-//		Global variables for results
 		float inchesToCm = 2.54f;
 		float stonesToKg = 6.364f;
 		
@@ -72,7 +70,6 @@ public class RoomArea {
 		
 //		Convert Feet to Inches and get Total inches and convert to Centimeters
 		float totalHeight = ((heightInFeet * 12) + heightInInches ) * inchesToCm ;
-		
 		
 //		Convert remainer Pounds to Stone and get Total Stones and convert to Kg
 		
