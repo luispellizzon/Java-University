@@ -39,7 +39,7 @@ public class RoomArea {
 //		gardenLawnArea(lenght in float, width in float);
 		
 		/*Exercise 5 */
-		costInMeter(20.69f);
+		costInMeter(4.8f);
 		
 	}
 	
