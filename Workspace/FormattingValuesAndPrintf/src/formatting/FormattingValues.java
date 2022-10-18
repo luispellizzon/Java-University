@@ -20,7 +20,27 @@ public class FormattingValues {
 //		setPin();
 
 		/* -- Exercise 4 --*/	
-	marathonNumber();
+//		marathonNumber();
+		
+		/* -- Exercise 4 --*/	
+		cardNumber();
+	}
+	
+	public static void cardNumber() {
+		
+		Scanner sc  = new Scanner(System.in);
+		
+		DecimalFormat cardFormat = new DecimalFormat("0000,0000,0000,0000");
+		
+		System.out.println("Enter your card number");
+		long cardNumber = sc.nextLong();
+		
+
+		
+		
+		System.out.printf("Your card number is: %s", cardFormat.format(cardNumber).replaceAll(",", "-"));
+		
+		
 	}
 	
 	public static void marathonNumber() {
