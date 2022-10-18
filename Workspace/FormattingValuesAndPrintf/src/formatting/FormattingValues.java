@@ -19,9 +19,21 @@ public class FormattingValues {
 		/* -- Exercise 3 --*/	
 //		setPin();
 
+		/* -- Exercise 4 --*/	
+	marathonNumber();
 	}
 	
-	private static void setPin() {
+	public static void marathonNumber() {
+		Scanner sc = new Scanner(System.in);
+		DecimalFormat numberFormat = new DecimalFormat("EE00000");
+		
+		System.out.println("Please, enter the marathon number:");
+		int number =  sc.nextInt();
+		System.out.printf("The participant number is: %s", numberFormat.format(number));
+	}
+	
+	
+	public static void setPin() {
 		Scanner sc = new Scanner(System.in);
 		DecimalFormat pinFormat = new DecimalFormat("0000");
 		
