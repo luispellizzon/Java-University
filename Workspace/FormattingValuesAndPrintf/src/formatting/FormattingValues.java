@@ -16,20 +16,29 @@ public class FormattingValues {
 		/* -- Exercise 2 --*/
 //		milesToKm( 10f);
 		
-		/* -- Exercise 3 --*/
-		
-		setPin(sc);
+		/* -- Exercise 3 --*/	
+//		setPin();
 
 	}
 	
-	private static void setPin(Scanner sc) {
+	private static void setPin() {
+		Scanner sc = new Scanner(System.in);
 		DecimalFormat pinFormat = new DecimalFormat("0000");
 		
-			System.out.println("Please, register a PIN up to 4 digits:");
-			int pin = sc.nextInt();
-			 
+		System.out.println("Please, register a PIN up to 4 digits:");
+		int pinInput = sc.nextInt();
+		
+		int pinNumber;
+		
+		if(pinInput > 9999) {
+			System.out.println("Sorry, your PIN number needs to be less than 4 digits\n\n");
+			setPin();
+		} else {
+			
+			pinNumber = pinInput;
 					
-			System.out.printf("Your new pin is: %s",pinFormat.format(pin));
+			System.out.printf("Your new pin is: %s",pinFormat.format(pinNumber));
+		}
 			 
 ;		
 	}
