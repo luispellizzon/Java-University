@@ -1,5 +1,7 @@
 package paybyweight;
-import java.util.Arrays;
+import java.text.DecimalFormat;
+import java.util.*;
+
 
 public class PayByWeight {
 
@@ -12,22 +14,111 @@ public class PayByWeight {
 //		}
 		
 		
+		ArrayList<Float> userResults = customerWasteKg();
+//		Object[] annualFeesPerCompany = annualServicesFee(); 
+		
 		tableFormat();
+//		
+		annualResults(userResults);
+		
+	
+	}
+	
+//	
+//	private static Object[] annualServicesFee() {
+//		String greenCleanName = "Green Clean";
+//		int greenCleanFee = 180;
+//		
+//		String countryCollectName = "Country Collect";
+//		int countryCollectFee = 170;
+//		
+//		String enviroName = "Enviro";
+//		int enviroFee = 150;
+//		
+//		String wasteAwayName = "Waste Away";
+//		int wasteAwayFee = 200;
+//		
+//		int[] companiesFee = {greenCleanFee, countryCollectFee, enviroFee, wasteAwayFee};
+//		String[] companiesName = {greenCleanName, countryCollectName, enviroName, wasteAwayName};
+//		
+//		
+//		return  new Object[]{companiesName,companiesFee};
+//		
+//		
+//		
+//	}
+//	
+	
+	private static void annualResults(ArrayList<Float> userResults) {
+		
+		DecimalFormat euroFormat = new DecimalFormat("€#,###,##0.00");
+		
+		String greenCleanName = "Green Clean";
+		int greenCleanFee = 180;
+		
+		String countryCollectName = "Country Collect";
+		int countryCollectFee = 170;
+		
+		String enviroName = "Enviro";
+		int enviroFee = 150;
+		
+		String wasteAwayName = "Waste Away";
+		int wasteAwayFee = 200;
+		
+		int[] companiesFee = {greenCleanFee, countryCollectFee, enviroFee, wasteAwayFee};
+		String[] companiesName = {greenCleanName, countryCollectName, enviroName, wasteAwayName};
+		
+		
+		
+		for(int i = 0; i < companiesName.length ; i++) {
+			
+			if( "Green Clean".equals(companiesName[i])) {
+				System.out.printf("%s%21s \n", companiesName[i], euroFormat.format(companiesFee[i]));
+				
+			} else if( "Country Collect".equals(companiesName[i])) {
+				System.out.printf("%s%17s \n", companiesName[i], euroFormat.format(companiesFee[i]));
+				
+			} else if( "Enviro".equals(companiesName[i])) {
+				System.out.printf("%s%26s \n", companiesName[i], euroFormat.format(companiesFee[i]));
+				
+			}  else {
+				System.out.printf("%s%22s \n", companiesName[i], euroFormat.format(companiesFee[i]));
+					
+			}
+
+			
+		}
+//		
+		
 		
 	}
 	
-	
-	private static int[] annualServices() {
+	private static ArrayList<Float> customerWasteKg() {
+		Scanner sc = new Scanner(System.in);
 		
-		int greenClean = 180;
-		int countryCollect = 170;
-		int enviro = 150;
-		int wasteAway = 200;
+		String[] types = {"General Waste", "Recycling Waste", "Organic Waste", "Glass Waste"};
+		String title ="Weekly Amount of Waste";
 		
-		int[] companiesArray = {greenClean, countryCollect, enviro, wasteAway};
 		
-		return companiesArray;
 		
+		ArrayList<Float> wasteKgs = new ArrayList<Float>();
+		
+		for(int i = 0; i < types.length; i++) {
+			System.out.print(types[i] + ": ");
+			float waste = sc.nextFloat();
+			
+			
+			wasteKgs.add(waste);
+		}
+		
+		System.out.println("\n".repeat(5));
+		System.out.printf("%80s\n\n",title);
+		
+		for(int i = 0; i < types.length; i++) {
+			System.out.printf("%s :  %.2f kg\n",types[i],wasteKgs.get(i));
+		}
+		
+		return wasteKgs;
 		
 		
 	}
