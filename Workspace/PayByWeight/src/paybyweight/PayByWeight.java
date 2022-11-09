@@ -24,46 +24,37 @@ public class PayByWeight {
 	
 	}
 	
-//	
-//	private static Object[] annualServicesFee() {
-//		String greenCleanName = "Green Clean";
-//		int greenCleanFee = 180;
-//		
-//		String countryCollectName = "Country Collect";
-//		int countryCollectFee = 170;
-//		
-//		String enviroName = "Enviro";
-//		int enviroFee = 150;
-//		
-//		String wasteAwayName = "Waste Away";
-//		int wasteAwayFee = 200;
-//		
-//		int[] companiesFee = {greenCleanFee, countryCollectFee, enviroFee, wasteAwayFee};
-//		String[] companiesName = {greenCleanName, countryCollectName, enviroName, wasteAwayName};
-//		
-//		
-//		return  new Object[]{companiesName,companiesFee};
-//		
-//		
-//		
-//	}
-//	
-	
 	private static void annualResults(ArrayList<Float> userResults) {
 		
 		DecimalFormat euroFormat = new DecimalFormat("€#,###,##0.00");
 		
 		String greenCleanName = "Green Clean";
 		int greenCleanFee = 180;
+		float greenCleanGeneralWaste = 0.21f;
+		int greenCleanRecycling = 0;
+		float greenCleanOrganic = 0.10f;
+		float greenCleanGlass = 0.15f;
 		
 		String countryCollectName = "Country Collect";
 		int countryCollectFee = 170;
+		float countryCollectGeneralWaste = 0.14f;
+		float countryCollectRecycling = 0.14f;
+		float countryCollectOrganic = 0.10f;
+		float countryCollectGlass = 0.12f;
 		
 		String enviroName = "Enviro";
 		int enviroFee = 150;
+		float enviroGeneralWaste = 0.30f;
+		int enviroRecycling = 0;
+		int enviroOrganic = 0;
+		int enviroGlass = 0;
 		
 		String wasteAwayName = "Waste Away";
 		int wasteAwayFee = 200;
+		float wasteAwayGeneralWaste = 0.21f;
+		int wasteAwayRecycling = 0;
+		float wasteAwayOrganic = 0.10f;
+		float wasteAwayGlass = 0.15f;
 		
 		int[] companiesFee = {greenCleanFee, countryCollectFee, enviroFee, wasteAwayFee};
 		String[] companiesName = {greenCleanName, countryCollectName, enviroName, wasteAwayName};
@@ -73,22 +64,31 @@ public class PayByWeight {
 		for(int i = 0; i < companiesName.length ; i++) {
 			
 			if( "Green Clean".equals(companiesName[i])) {
-				System.out.printf("%s%21s \n", companiesName[i], euroFormat.format(companiesFee[i]));
+				float generalWasteTotal = greenCleanGeneralWaste * userResults.get(0);
+				float recyclingTotal = greenCleanGeneralWaste * userResults.get(1);
+				float organicTotal = greenCleanGeneralWaste * userResults.get(2);
+				float glassTotal = greenCleanGeneralWaste * userResults.get(3);
+				float annualTotal = generalWasteTotal + recyclingTotal + organicTotal + glassTotal + greenCleanFee;
+				
+				System.out.printf("%s %21s %23s %22s %22s %21s %21s \n", companiesName[i], euroFormat.format(companiesFee[i]), euroFormat.format(generalWasteTotal), euroFormat.format(recyclingTotal), euroFormat.format(organicTotal),euroFormat.format(glassTotal), euroFormat.format(annualTotal));
 				
 			} else if( "Country Collect".equals(companiesName[i])) {
-				System.out.printf("%s%17s \n", companiesName[i], euroFormat.format(companiesFee[i]));
+				System.out.printf("%s %17s \n", companiesName[i], euroFormat.format(companiesFee[i]));
 				
 			} else if( "Enviro".equals(companiesName[i])) {
-				System.out.printf("%s%26s \n", companiesName[i], euroFormat.format(companiesFee[i]));
+				System.out.printf("%s %26s \n", companiesName[i], euroFormat.format(companiesFee[i]));
 				
 			}  else {
-				System.out.printf("%s%22s \n", companiesName[i], euroFormat.format(companiesFee[i]));
+				System.out.printf("%s %22s \n", companiesName[i], euroFormat.format(companiesFee[i]));
 					
 			}
 
 			
 		}
+		
+		
 //		
+		
 		
 		
 	}
@@ -115,7 +115,7 @@ public class PayByWeight {
 		System.out.printf("%80s\n\n",title);
 		
 		for(int i = 0; i < types.length; i++) {
-			System.out.printf("%s :  %.2f kg\n",types[i],wasteKgs.get(i));
+			System.out.printf("%s : %.2f kg \n",types[i],wasteKgs.get(i));
 		}
 		
 		return wasteKgs;
