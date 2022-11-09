@@ -65,21 +65,37 @@ public class PayByWeight {
 			
 			if( "Green Clean".equals(companiesName[i])) {
 				float generalWasteTotal = greenCleanGeneralWaste * userResults.get(0);
-				float recyclingTotal = greenCleanGeneralWaste * userResults.get(1);
-				float organicTotal = greenCleanGeneralWaste * userResults.get(2);
-				float glassTotal = greenCleanGeneralWaste * userResults.get(3);
+				float recyclingTotal = greenCleanRecycling * userResults.get(1);
+				float organicTotal = greenCleanOrganic * userResults.get(2);
+				float glassTotal = greenCleanGlass * userResults.get(3);
 				float annualTotal = generalWasteTotal + recyclingTotal + organicTotal + glassTotal + greenCleanFee;
 				
 				System.out.printf("%s %21s %23s %22s %22s %21s %21s \n", companiesName[i], euroFormat.format(companiesFee[i]), euroFormat.format(generalWasteTotal), euroFormat.format(recyclingTotal), euroFormat.format(organicTotal),euroFormat.format(glassTotal), euroFormat.format(annualTotal));
 				
 			} else if( "Country Collect".equals(companiesName[i])) {
-				System.out.printf("%s %17s \n", companiesName[i], euroFormat.format(companiesFee[i]));
+				float generalWasteTotal = countryCollectGeneralWaste * userResults.get(0);
+				float recyclingTotal = countryCollectRecycling * userResults.get(1);
+				float organicTotal = countryCollectOrganic * userResults.get(2);
+				float glassTotal = countryCollectGlass * userResults.get(3);
+				float annualTotal = generalWasteTotal + recyclingTotal + organicTotal + glassTotal + countryCollectFee;
+				
+				System.out.printf("%s %17s %23s %22s %22s %21s %21s \n",companiesName[i], euroFormat.format(companiesFee[i]), euroFormat.format(generalWasteTotal), euroFormat.format(recyclingTotal), euroFormat.format(organicTotal),euroFormat.format(glassTotal), euroFormat.format(annualTotal));
 				
 			} else if( "Enviro".equals(companiesName[i])) {
-				System.out.printf("%s %26s \n", companiesName[i], euroFormat.format(companiesFee[i]));
+				float generalWasteTotal = enviroGeneralWaste * userResults.get(0);
+				float recyclingTotal = enviroRecycling * userResults.get(1);
+				float organicTotal = enviroOrganic * userResults.get(2);
+				float glassTotal = enviroGlass * userResults.get(3);
+				float annualTotal = generalWasteTotal + recyclingTotal + organicTotal + glassTotal + enviroFee;
+				System.out.printf("%s %26s %23s %22s %22s %21s %21s \n", companiesName[i], euroFormat.format(companiesFee[i]), euroFormat.format(generalWasteTotal), euroFormat.format(recyclingTotal), euroFormat.format(organicTotal),euroFormat.format(glassTotal), euroFormat.format(annualTotal));
 				
 			}  else {
-				System.out.printf("%s %22s \n", companiesName[i], euroFormat.format(companiesFee[i]));
+				float generalWasteTotal = wasteAwayGeneralWaste * userResults.get(0);
+				float recyclingTotal = wasteAwayRecycling * userResults.get(1);
+				float organicTotal = wasteAwayOrganic * userResults.get(2);
+				float glassTotal = wasteAwayGlass * userResults.get(3);
+				float annualTotal = generalWasteTotal + recyclingTotal + organicTotal + glassTotal + wasteAwayFee;
+				System.out.printf("%s %22s %23s %22s %22s %21s %21s \n", companiesName[i], euroFormat.format(companiesFee[i]), euroFormat.format(generalWasteTotal), euroFormat.format(recyclingTotal), euroFormat.format(organicTotal),euroFormat.format(glassTotal), euroFormat.format(annualTotal));
 					
 			}
 
