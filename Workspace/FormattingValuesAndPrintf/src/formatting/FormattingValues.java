@@ -23,7 +23,7 @@ public class FormattingValues {
 //		marathonNumber();
 		
 		/* -- Exercise 4 --*/	
-		cardNumber();
+//		cardNumber();
 	}
 	
 	public static void cardNumber() {
