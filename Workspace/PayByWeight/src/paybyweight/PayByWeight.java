@@ -6,19 +6,11 @@ import java.util.*;
 public class PayByWeight {
 
 	public static void main(String[] args) {
-		
-//		int[] companies = annualServices();
-//		
-//		for(int i = 0; i < companies.length; i++) {
-//			System.out.println(companies[i]);
-//		}
-		
-		
+				
 		ArrayList<Float> userResults = customerWasteKg();
-//		Object[] annualFeesPerCompany = annualServicesFee(); 
-		
+	
 		tableFormat();
-//		
+	
 		annualResults(userResults);
 		
 	
@@ -64,6 +56,7 @@ public class PayByWeight {
 		for(int i = 0; i < companiesName.length ; i++) {
 			
 			if( "Green Clean".equals(companiesName[i])) {
+				
 				float generalWasteTotal = greenCleanGeneralWaste * userResults.get(0);
 				float recyclingTotal = greenCleanRecycling * userResults.get(1);
 				float organicTotal = greenCleanOrganic * userResults.get(2);
