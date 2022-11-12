@@ -80,7 +80,7 @@ public class PayByWeight {
 				float glassTotal = greenCleanGlass * userResults.get(3)  * weeksPerYear;
 				float annualTotal = generalWasteTotal + recyclingTotal + organicTotal + glassTotal + greenCleanFee;
 				
-				System.out.printf("%s %21s %23s %22s %22s %21s %21s \n", companiesName[i], euroFormat.format(greenCleanFee), euroFormat.format(generalWasteTotal), euroFormat.format(recyclingTotal), euroFormat.format(organicTotal),euroFormat.format(glassTotal), euroFormat.format(annualTotal));
+				System.out.printf("\u2503%-22s%-18s%-19s%-20s%-19s%-16s%-12s\u2503\n", companiesName[i], euroFormat.format(greenCleanFee), euroFormat.format(generalWasteTotal), euroFormat.format(recyclingTotal), euroFormat.format(organicTotal),euroFormat.format(glassTotal), euroFormat.format(annualTotal));
 				
 			} else if( "Country Collect".equals(companiesName[i])) {
 				float generalWasteTotal = countryCollectGeneralWaste * userResults.get(0) * weeksPerYear;
@@ -89,7 +89,7 @@ public class PayByWeight {
 				float glassTotal = countryCollectGlass * userResults.get(3) * weeksPerYear;
 				float annualTotal = generalWasteTotal + recyclingTotal + organicTotal + glassTotal + countryCollectFee;
 				
-				System.out.printf("%s %17s %23s %22s %22s %21s %21s \n",companiesName[i], euroFormat.format(countryCollectFee), euroFormat.format(generalWasteTotal), euroFormat.format(recyclingTotal), euroFormat.format(organicTotal),euroFormat.format(glassTotal), euroFormat.format(annualTotal));
+				System.out.printf("\u2503%-22s%-18s%-19s%-20s%-19s%-16s%-12s\u2503\n",companiesName[i], euroFormat.format(countryCollectFee), euroFormat.format(generalWasteTotal), euroFormat.format(recyclingTotal), euroFormat.format(organicTotal),euroFormat.format(glassTotal), euroFormat.format(annualTotal));
 				
 			} else if( "Enviro".equals(companiesName[i])) {
 				float generalWasteTotal = enviroGeneralWaste * userResults.get(0) * weeksPerYear;
@@ -98,7 +98,7 @@ public class PayByWeight {
 				float glassTotal = enviroGlass * userResults.get(3) * weeksPerYear;
 				float annualTotal = generalWasteTotal + recyclingTotal + organicTotal + glassTotal + enviroFee;
 				
-				System.out.printf("%s %26s %23s %22s %22s %21s %21s \n", companiesName[i], euroFormat.format(enviroFee), euroFormat.format(generalWasteTotal), euroFormat.format(recyclingTotal), euroFormat.format(organicTotal),euroFormat.format(glassTotal), euroFormat.format(annualTotal));
+				System.out.printf("\u2503%-22s%-18s%-19s%-20s%-19s%-16s%-12s\u2503\n", companiesName[i], euroFormat.format(enviroFee), euroFormat.format(generalWasteTotal), euroFormat.format(recyclingTotal), euroFormat.format(organicTotal),euroFormat.format(glassTotal), euroFormat.format(annualTotal));
 				
 			}  else {
 				float generalWasteTotal = wasteAwayGeneralWaste * userResults.get(0) * weeksPerYear;
@@ -107,12 +107,15 @@ public class PayByWeight {
 				float glassTotal = wasteAwayGlass * userResults.get(3) * weeksPerYear;
 				float annualTotal = generalWasteTotal + recyclingTotal + organicTotal + glassTotal + wasteAwayFee;
 				
-				System.out.printf("%s %22s %23s %22s %22s %21s %21s \n", companiesName[i], euroFormat.format(wasteAwayFee), euroFormat.format(generalWasteTotal), euroFormat.format(recyclingTotal), euroFormat.format(organicTotal),euroFormat.format(glassTotal), euroFormat.format(annualTotal));
+				System.out.printf("\u2503%-22s%-18s%-19s%-20s%-19s%-16s%-12s\u2503\n", companiesName[i], euroFormat.format(wasteAwayFee), euroFormat.format(generalWasteTotal), euroFormat.format(recyclingTotal), euroFormat.format(organicTotal),euroFormat.format(glassTotal), euroFormat.format(annualTotal));
 					
 			}
 			
+			
+			
 		}
-
+		
+		System.out.println("\u2517" + "\u2501".repeat(126) + "\u251B");
 		
 	}
 	
@@ -167,18 +170,12 @@ public class PayByWeight {
 	/* -- Table Header Format -- */
 	
 	private static void tableFormat() {
-		String title = "Annual Waste Charges";
-		String companyName = "Company Name";
-		String annualService= "Annual Service Fee";
-		String generalCost = "General Waste Cost";
-		String recyclingCost = "Recycling Cost";
-		String organicCost = "Organic Waste Cost";
-		String glassCost = "Glass Cost";
-		String totalCost = "Total Cost (per annum)";
 		
-		System.out.printf("%80s\n\n", title);
-		System.out.printf("%10s%25s%25s%22s%25s%18s%28s\n\n",companyName, annualService, generalCost, recyclingCost, organicCost, glassCost, totalCost);
+		System.out.printf("%70s\n\n", "Annual Waste Charges");
+		System.out.printf("%s%s%16s%19s%21s%18s%17s%21s%3s\n","\u2503","Company Name", "Annual", "General", "Recycling", "Organic", "Glass", "Total Cost","\u2503");
+		System.out.printf("%s%33s%17s%13s%26s%13s%23s%2s\n", "\u2503","Service Fee", "Waste Cost", "Cost", "Waste Cost", "Cost", "(per annum)", "\u2503");
+		System.out.printf("%s%127s\n", "\u2503", "\u2503");
 
-				
+		
 	}
 }
