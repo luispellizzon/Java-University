@@ -131,7 +131,7 @@ public class PayByWeight {
 		Scanner sc = new Scanner(System.in);
 		
 		// Create an array with each type of waste
-		String[] types = {"General Waste", "Recycling Waste", "Organic Waste", "Glass Waste"};
+		String[] types = {"General Waste:", "Recycling Waste:", "Organic Waste:", "Glass Waste:"};
 		
 		
 		// Create empty ArrayList to add customer inputs later
@@ -141,7 +141,7 @@ public class PayByWeight {
 		for(int i = 0; i < types.length; i++) {
 			
 			//Print type of waste e.g General Waste: <userInput>
-			System.out.print(types[i] + ": ");
+			System.out.printf("%-18s",types[i]);
 			float waste = sc.nextFloat();
 			
 			//Add input in the wasteKgs ArrayList
@@ -151,12 +151,13 @@ public class PayByWeight {
 		/*---- WHEN LOOP FINISH -----*/
 		// Print blanket lines so the customer old inputs will go under the console
 		System.out.println("\n".repeat(2));
-		System.out.printf("%s%127s\n", "\u2503", "\u2503");
-		
-		System.out.printf("\u2503%s: %.2f kg \n",types[0],wasteKgs.get(0));
-		System.out.printf("\u2503%s: %.2f kg \n",types[1],wasteKgs.get(1));
-		System.out.printf("\u2503%s: %.2f kg \n",types[2],wasteKgs.get(2));
-		System.out.printf("\u2503%s: %.2f kg \n",types[3],wasteKgs.get(3));
+//		System.out.printf("%s%%127s\n", "\u250F", "\u2513");
+		System.out.println("\u250F" + "\u2501".repeat(126) + "\u2513");
+//		
+		System.out.printf("\u2503%-18s%.2f %s%102s\n",types[0],wasteKgs.get(0),"kg", "\u2503");
+		System.out.printf("\u2503%-18s%.2f %s%s\n",types[1],wasteKgs.get(1), "kg", "\u2503");
+		System.out.printf("\u2503%-18s%.2f %s%s\n",types[2],wasteKgs.get(2), "kg", "\u2503");
+		System.out.printf("\u2503%-18s%.2f %s%s\n",types[3],wasteKgs.get(3), "kg", "\u2503");
 		
 //		// For each type of waste, print a line with its name and user input for that type, and add kg in the end.
 //		// e.g. General Waste: 200 kg
