@@ -7,6 +7,8 @@ public class PayByWeight {
 
 	public static void main(String[] args) {
 		
+		
+		
 		/* -- Initialize function to get user inputs and store the results in a variable as ArrayList */
 		ArrayList<Float> userResults = customerWasteKg();
 	
@@ -123,7 +125,7 @@ public class PayByWeight {
 	private static ArrayList<Float> customerWasteKg() {
 		
 		// Title for this section
-		String title ="Weekly Amount of Waste";
+	
 		
 		//Intantiate Scanner
 		Scanner sc = new Scanner(System.in);
@@ -148,17 +150,20 @@ public class PayByWeight {
 		
 		/*---- WHEN LOOP FINISH -----*/
 		// Print blanket lines so the customer old inputs will go under the console
-		System.out.println("\n".repeat(10));
+		System.out.println("\n".repeat(2));
+		System.out.printf("%s%127s\n", "\u2503", "\u2503");
 		
-		// Print title Weekly Amount of Waste to make it look like a section
-		System.out.printf("%80s\n\n",title);
+		System.out.printf("\u2503%s: %.2f kg \n",types[0],wasteKgs.get(0));
+		System.out.printf("\u2503%s: %.2f kg \n",types[1],wasteKgs.get(1));
+		System.out.printf("\u2503%s: %.2f kg \n",types[2],wasteKgs.get(2));
+		System.out.printf("\u2503%s: %.2f kg \n",types[3],wasteKgs.get(3));
 		
-		// For each type of waste, print a line with its name and user input for that type, and add kg in the end.
-		// e.g. General Waste: 200 kg
-		for(int i = 0; i < types.length; i++) {
-			System.out.printf("%s: %.2f kg \n",types[i],wasteKgs.get(i));
-		}
-		
+//		// For each type of waste, print a line with its name and user input for that type, and add kg in the end.
+//		// e.g. General Waste: 200 kg
+//		for(int i = 0; i < types.length; i++) {
+//			System.out.printf("\u2503%-s: %.2f kg \n",types[i],wasteKgs.get(i));
+//		}
+//		
 		// Return wasteKgs array to be used to calculate all the costs;
 		return wasteKgs;
 		
@@ -171,7 +176,8 @@ public class PayByWeight {
 	
 	private static void tableFormat() {
 		
-		System.out.printf("%70s\n\n", "Annual Waste Charges");
+		System.out.printf("%s%69s%58s\n", "\u2503", "Annual Waste Charges", "\u2503" );
+		System.out.printf("%s%127s\n", "\u2503", "\u2503");
 		System.out.printf("%s%s%16s%19s%21s%18s%17s%21s%3s\n","\u2503","Company Name", "Annual", "General", "Recycling", "Organic", "Glass", "Total Cost","\u2503");
 		System.out.printf("%s%33s%17s%13s%26s%13s%23s%2s\n", "\u2503","Service Fee", "Waste Cost", "Cost", "Waste Cost", "Cost", "(per annum)", "\u2503");
 		System.out.printf("%s%127s\n", "\u2503", "\u2503");
