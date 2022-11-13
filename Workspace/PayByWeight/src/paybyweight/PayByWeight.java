@@ -136,6 +136,8 @@ public class PayByWeight {
 		
 		// Create empty ArrayList to add customer inputs later
 		ArrayList<Float> wasteKgs = new ArrayList<Float>();
+		
+		System.out.println("Enter the weekly waste weights in kgs:\n");
 	
 		// For each type of waste, ask user for its input and add the input for that type of waste in an ArrayList
 		for(int i = 0; i < types.length; i++) {
@@ -148,17 +150,22 @@ public class PayByWeight {
 			wasteKgs.add(waste);
 		}
 		
+		String type1 = Float.toString(wasteKgs.get(0));
+		String type2 = Float.toString(wasteKgs.get(1));
+		String type3 = Float.toString(wasteKgs.get(2));
+		String type4 = Float.toString(wasteKgs.get(3));
+		
 		/*---- WHEN LOOP FINISH -----*/
 		// Print blanket lines so the customer old inputs will go under the console
-		System.out.println("\n".repeat(2));
+		System.out.println("");
 //		System.out.printf("%s%%127s\n", "\u250F", "\u2513");
 		System.out.println("\u250F" + "\u2501".repeat(126) + "\u2513");
-//		
-		System.out.printf("\u2503%-18s%.2f %s%102s\n",types[0],wasteKgs.get(0),"kg", "\u2503");
-		System.out.printf("\u2503%-18s%.2f %s%s\n",types[1],wasteKgs.get(1), "kg", "\u2503");
-		System.out.printf("\u2503%-18s%.2f %s%s\n",types[2],wasteKgs.get(2), "kg", "\u2503");
-		System.out.printf("\u2503%-18s%.2f %s%s\n",types[3],wasteKgs.get(3), "kg", "\u2503");
-		
+//	
+		System.out.printf("\u2503%-22s%-104s%s\n",types[0],type1 + " kg", "\u2503");
+		System.out.printf("\u2503%-22s%-104s%s\n",types[1],type2 + " kg", "\u2503");
+		System.out.printf("\u2503%-22s%-104s%s\n",types[2],type3 + " kg", "\u2503");
+		System.out.printf("\u2503%-22s%-104s%s\n",types[3],type4 + " kg", "\u2503");
+	
 //		// For each type of waste, print a line with its name and user input for that type, and add kg in the end.
 //		// e.g. General Waste: 200 kg
 //		for(int i = 0; i < types.length; i++) {
