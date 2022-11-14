@@ -1,3 +1,6 @@
+
+/* @author Luis Pellizzon */
+
 package paybyweight;
 import java.text.DecimalFormat;
 import java.util.*;
