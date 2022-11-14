@@ -1,5 +1,8 @@
 
-/* @author Luis Pellizzon */
+/* @author Luis Pellizzon 
+ * @project Pay by weight is a refuse collecting system where the cost to collect general waste, recycling, organic waste and glass is calculated per kg of waste. 
+ * @date 14/11/2022 
+ */
 
 package paybyweight;
 import java.text.DecimalFormat;
