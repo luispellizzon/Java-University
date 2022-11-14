@@ -15,6 +15,7 @@ public class PayByWeight {
 		
 		
 		
+		
 		/* -- Initialize function to get user inputs and store the results in a variable that holds the ArrayList, TOP SIDE */
 		ArrayList<Byte> userResults = customerWasteKg();	
 		
@@ -63,15 +64,6 @@ public class PayByWeight {
 			wasteKgs.add(waste);
 		}
 		
-		/* CAST BYTE TO STRING, BUT WHY ? */
-		/* To be more flexible with the Borders around the table, I cast each Byte data to String
-		 * so we can get the data in string and concatenate with "kg" to be printed inside the bold border, 
-		 * and give a fixed width to output this data + kg, so the last bold line will be always printed on the final of the width, no matter the size of the user input
-		 */
-		String type1 = Byte.toString(wasteKgs.get(0));
-		String type2 = Byte.toString(wasteKgs.get(1));
-		String type3 = Byte.toString(wasteKgs.get(2));
-		String type4 = Byte.toString(wasteKgs.get(3));
 		
 		/*---- WHEN LOOP FINISH -----*/
 		// Print blanket line to give one line space between the inputs and the table output
@@ -82,10 +74,10 @@ public class PayByWeight {
 		System.out.println("\u250F" + "\u2501".repeat(126) + "\u2513");
 		
 		// Each type of waste with it is values aligned 
-		System.out.printf("\u2503%-22s%-104s%s\n",types[0],type1 + " kg", "\u2503");
-		System.out.printf("\u2503%-22s%-104s%s\n",types[1],type2 + " kg", "\u2503");
-		System.out.printf("\u2503%-22s%-104s%s\n",types[2],type3 + " kg", "\u2503");
-		System.out.printf("\u2503%-22s%-104s%s\n",types[3],type4 + " kg", "\u2503");
+		System.out.printf("\u2503%-22s%-104s%s\n",types[0],wasteKgs.get(0) + " kg", "\u2503");
+		System.out.printf("\u2503%-22s%-104s%s\n",types[1],wasteKgs.get(1) + " kg", "\u2503");
+		System.out.printf("\u2503%-22s%-104s%s\n",types[2],wasteKgs.get(2)+ " kg", "\u2503");
+		System.out.printf("\u2503%-22s%-104s%s\n",types[3],wasteKgs.get(3) + " kg", "\u2503");
 		System.out.printf("%s%127s\n", "\u2503", "\u2503");
 	
 		// Return wasteKgs array to be used to calculate all the costs;
