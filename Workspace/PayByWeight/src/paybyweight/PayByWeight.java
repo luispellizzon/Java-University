@@ -134,10 +134,10 @@ public class PayByWeight {
 		/* -- Waste Away services and fees */
 		final String wasteAwayName = "Waste Away";
 		final int wasteAwayFee = 200;
-		final float wasteAwayGeneralWaste = 0.21f;
-		final byte wasteAwayRecycling = 0;
+		final float wasteAwayGeneralWaste = 0.10f;
+		final float wasteAwayRecycling = 0.10f;
 		final float wasteAwayOrganic = 0.10f;
-		final float wasteAwayGlass = 0.15f;
+		final float wasteAwayGlass = 0.10f;
 		
 		
 		// Create an array to loop over each company name and calculate fees and costs 
