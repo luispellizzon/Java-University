@@ -9,59 +9,138 @@ public class PayByWeight {
 		
 		
 		
-		/* -- Initialize function to get user inputs and store the results in a variable as ArrayList */
-		ArrayList<Float> userResults = customerWasteKg();
-	
-		/* Print table headers and shape */
-		tableFormat();
+		/* -- Initialize function to get user inputs and store the results in a variable that holds the ArrayList, TOP SIDE */
+		ArrayList<Byte> userResults = customerWasteKg();	
 		
-		
-		/* Print calculate results for each type of waste and total per annum*/
+		/* Pass the userResults variable as an argument so will be used as a parameter to calculate costs */
+		/* Print calculate results for each type of waste and total per annum, BOTTOM SIDE*/
 		annualResults(userResults);
 	
 	}
 	
-	private static void annualResults(ArrayList<Float> userResults) {
+	/*-- Get customer weekly waste inputs,
+	 *  Start printing the top of the bold border, and print types of waste with its weights aligned,
+	 *  Return user inputs result as an arraylist to be easier to iterate over and output the bottom part of the table format aligned--*/
+	private static ArrayList<Byte> customerWasteKg() {
 		
+		// Main title to tell user what needs to be the input
+		System.out.println("Enter the weekly waste weights in kgs: \n");
+		
+
+		//Intantiate Scanner
+		Scanner sc = new Scanner(System.in);
+		
+		// Create an array with each type of waste to be printed on screen asking for its value, and later to be printed inside the tabular result
+		String[] types = {"General Waste:", "Recycling Waste:", "Organic Waste:", "Glass Waste:"};
+		
+		
+		// Create empty ArrayList of the type Byte to add customer input (bytes)
+		ArrayList<Byte> wasteKgs = new ArrayList<Byte>();
+		
+	
+		// For each type of waste, ask user for its input and add the input for that type of waste, and add on empty ArrayList
+		for(int i = 0; i < types.length; i++) {
+			
+			//Print type of waste e.g General Waste: <userInput>
+			//Each type has negative number to aligned, so does not matter the size of the type printed, the input will be always 18 spaces padded to the right.
+			//Type:             <userInput>
+			System.out.printf("%-18s",types[i]);
+			
+			/* Store input as Byte Type, because the values will be a whole number no greater than 127 */
+			byte waste = sc.nextByte();
+			
+			//Add input in the wasteKgs ArrayList.
+			wasteKgs.add(waste);
+		}
+		
+		/* CAST BYTE TO STRING, BUT WHY ? */
+		/* To be more flexible with the Borders around the table, I cast each Byte data to String
+		 * so we can get the data in string and concatenate with "kg" to be printed inside the bold border, 
+		 * and give a fixed width to output this data + kg, so the last bold line will be always printed on the final of the width, no matter the size of the user input
+		 */
+		String type1 = Byte.toString(wasteKgs.get(0));
+		String type2 = Byte.toString(wasteKgs.get(1));
+		String type3 = Byte.toString(wasteKgs.get(2));
+		String type4 = Byte.toString(wasteKgs.get(3));
+		
+		/*---- WHEN LOOP FINISH -----*/
+		// Print blanket line to give one line space between the inputs and the table output
+		System.out.println("");
+
+		/* HEADER OUTPUT BOLD BORDERS FORMAT */
+		// BLACK BORDER FIRST LINE
+		System.out.println("\u250F" + "\u2501".repeat(126) + "\u2513");
+		
+		// Each type of waste with it is values aligned 
+		System.out.printf("\u2503%-22s%-104s%s\n",types[0],type1 + " kg", "\u2503");
+		System.out.printf("\u2503%-22s%-104s%s\n",types[1],type2 + " kg", "\u2503");
+		System.out.printf("\u2503%-22s%-104s%s\n",types[2],type3 + " kg", "\u2503");
+		System.out.printf("\u2503%-22s%-104s%s\n",types[3],type4 + " kg", "\u2503");
+		System.out.printf("%s%127s\n", "\u2503", "\u2503");
+	
+		// Return wasteKgs array to be used to calculate all the costs;
+		return wasteKgs;
+		
+		
+		/* { RESULTS WILL GO HERE } */
+		
+	}
+	
+	
+	/* Print each company with its costs and annual services aligned */
+	/* Use an ArrayList that contains how much weight a user will produce for each type of waste as a parameter to calculate how much each company will charge annually */
+	/* Print the bottom side of the bold border that contains the tabular format */
+	private static void annualResults(ArrayList<Byte> userResults) {
+		
+		/* Instantiate DecimalFormat to format all the results that will be outputted inside the table to meet the documented requirements*/
 		DecimalFormat euroFormat = new DecimalFormat("€#,###,##0.00");
 		
-		float weeksPerYear = 52.14f;
+		/* How many weeks a common year has */
+		/* A normal year has 52 weeks + 1 day,  so 52.143 weeks,  rounded to 52.14 as a float number*/
+		final float weeksPerYear = 52.14f;
+		
 		/* -- Green Clean services and fees */
-		String greenCleanName = "Green Clean";
-		int greenCleanFee = 180;
-		float greenCleanGeneralWaste = 0.21f;
-		int greenCleanRecycling = 0;
-		float greenCleanOrganic = 0.10f;
-		float greenCleanGlass = 0.15f;
+		final String greenCleanName = "Green Clean";
+		final int greenCleanFee = 180;
+		final float greenCleanGeneralWaste = 0.21f;
+		final byte greenCleanRecycling = 0;
+		final float greenCleanOrganic = 0.10f;
+		final float greenCleanGlass = 0.15f;
 		
 		/* -- Country Collect services and fees */
-		String countryCollectName = "Country Collect";
-		int countryCollectFee = 170;
-		float countryCollectGeneralWaste = 0.14f;
-		float countryCollectRecycling = 0.14f;
-		float countryCollectOrganic = 0.10f;
-		float countryCollectGlass = 0.12f;
+		final String countryCollectName = "Country Collect";
+		final int countryCollectFee = 170;
+		final float countryCollectGeneralWaste = 0.14f;
+		final float countryCollectRecycling = 0.14f;
+		final float countryCollectOrganic = 0.10f;
+		final float countryCollectGlass = 0.12f;
 		
 		/* -- Enviro services and fees */
-		String enviroName = "Enviro";
-		int enviroFee = 150;
-		float enviroGeneralWaste = 0.30f;
-		int enviroRecycling = 0;
-		int enviroOrganic = 0;
-		int enviroGlass = 0;
+		final String enviroName = "Enviro";
+		final int enviroFee = 150;
+		final float enviroGeneralWaste = 0.30f;
+		final int enviroRecycling = 0;
+		final byte enviroOrganic = 0;
+		final byte enviroGlass = 0;
 		
 		/* -- Waste Away services and fees */
-		String wasteAwayName = "Waste Away";
-		int wasteAwayFee = 200;
-		float wasteAwayGeneralWaste = 0.21f;
-		int wasteAwayRecycling = 0;
-		float wasteAwayOrganic = 0.10f;
-		float wasteAwayGlass = 0.15f;
+		final String wasteAwayName = "Waste Away";
+		final int wasteAwayFee = 200;
+		final float wasteAwayGeneralWaste = 0.21f;
+		final byte wasteAwayRecycling = 0;
+		final float wasteAwayOrganic = 0.10f;
+		final float wasteAwayGlass = 0.15f;
 		
 		
 		// Create an array to loop over each company name and calculate fees and costs 
 		String[] companiesName = {greenCleanName, countryCollectName, enviroName, wasteAwayName};
 		
+		/* TABLE HEADER WITH HEADER COLUMNS */
+		System.out.printf("%s%69s%58s\n", "\u2503", "Annual Waste Charges", "\u2503" );
+		System.out.printf("%s%127s\n", "\u2503", "\u2503");
+		System.out.printf("%s%s%16s%19s%21s%18s%17s%21s%3s\n","\u2503","Company Name", "Annual", "General", "Recycling", "Organic", "Glass", "Total Cost","\u2503");
+		System.out.printf("%s%33s%17s%13s%26s%13s%23s%2s\n", "\u2503","Service Fee", "Waste Cost", "Cost", "Waste Cost", "Cost", "(per annum)", "\u2503");
+		System.out.printf("%s%127s\n", "\u2503", "\u2503");
 		
 		/* -- LOOP EXPLAINED */
 		/* For each loop, if the if statement nested inside the loop is true it will calculate the results for the given index using its specifics variables*/
@@ -71,8 +150,10 @@ public class PayByWeight {
 			/* -- IF STATEMENT NESTED -- */
 			/* Each If statement requires the index to be equal to the given argument (Company Name) and will use the variables related to each company name to calculate the costs*/
 			/* For each type of waste (General, Organic, Recycling or Glass), the total will be calculated: costsPerKg * customerWasteKg * weeksPerYear  */
-			/* A normal year has 52 weeks + 1 day,  so 52.143 weeks,  rounded to 52.14 as a float number*/
 			/* TOTAL COST will be calculated with the sum of all the wasteTotals + annual service fee */
+			
+			/*---- ALIGNMENT ----*/
+			/* The alignment will be negative in each value, so each value will have more flexibility and each NEXT value will have a fixed start,and the final bold border will have its fixed place*/
 			
 			if( "Green Clean".equals(companiesName[i])) {
 				
@@ -117,79 +198,9 @@ public class PayByWeight {
 			
 		}
 		
+		/* LAST BOLD BOLDER TO CLOSE THE OUTPUT*/
 		System.out.println("\u2517" + "\u2501".repeat(126) + "\u251B");
 		
 	}
-	
-	/*-- Get customer weekly waste inputs and Return user inputs result as an arraylist--*/
-	private static ArrayList<Float> customerWasteKg() {
-		
-		// Title for this section
-	
-		
-		//Intantiate Scanner
-		Scanner sc = new Scanner(System.in);
-		
-		// Create an array with each type of waste
-		String[] types = {"General Waste:", "Recycling Waste:", "Organic Waste:", "Glass Waste:"};
-		
-		
-		// Create empty ArrayList to add customer inputs later
-		ArrayList<Float> wasteKgs = new ArrayList<Float>();
-		
-		System.out.println("Enter the weekly waste weights in kgs:\n");
-	
-		// For each type of waste, ask user for its input and add the input for that type of waste in an ArrayList
-		for(int i = 0; i < types.length; i++) {
-			
-			//Print type of waste e.g General Waste: <userInput>
-			System.out.printf("%-18s",types[i]);
-			float waste = sc.nextFloat();
-			
-			//Add input in the wasteKgs ArrayList
-			wasteKgs.add(waste);
-		}
-		
-		String type1 = Float.toString(wasteKgs.get(0));
-		String type2 = Float.toString(wasteKgs.get(1));
-		String type3 = Float.toString(wasteKgs.get(2));
-		String type4 = Float.toString(wasteKgs.get(3));
-		
-		/*---- WHEN LOOP FINISH -----*/
-		// Print blanket lines so the customer old inputs will go under the console
-		System.out.println("");
-//		System.out.printf("%s%%127s\n", "\u250F", "\u2513");
-		System.out.println("\u250F" + "\u2501".repeat(126) + "\u2513");
-//	
-		System.out.printf("\u2503%-22s%-104s%s\n",types[0],type1 + " kg", "\u2503");
-		System.out.printf("\u2503%-22s%-104s%s\n",types[1],type2 + " kg", "\u2503");
-		System.out.printf("\u2503%-22s%-104s%s\n",types[2],type3 + " kg", "\u2503");
-		System.out.printf("\u2503%-22s%-104s%s\n",types[3],type4 + " kg", "\u2503");
-	
-//		// For each type of waste, print a line with its name and user input for that type, and add kg in the end.
-//		// e.g. General Waste: 200 kg
-//		for(int i = 0; i < types.length; i++) {
-//			System.out.printf("\u2503%-s: %.2f kg \n",types[i],wasteKgs.get(i));
-//		}
-//		
-		// Return wasteKgs array to be used to calculate all the costs;
-		return wasteKgs;
-		
-		
-	}
-	
-	/* Shape and format of table */
-	
-	/* -- Table Header Format -- */
-	
-	private static void tableFormat() {
-		
-		System.out.printf("%s%69s%58s\n", "\u2503", "Annual Waste Charges", "\u2503" );
-		System.out.printf("%s%127s\n", "\u2503", "\u2503");
-		System.out.printf("%s%s%16s%19s%21s%18s%17s%21s%3s\n","\u2503","Company Name", "Annual", "General", "Recycling", "Organic", "Glass", "Total Cost","\u2503");
-		System.out.printf("%s%33s%17s%13s%26s%13s%23s%2s\n", "\u2503","Service Fee", "Waste Cost", "Cost", "Waste Cost", "Cost", "(per annum)", "\u2503");
-		System.out.printf("%s%127s\n", "\u2503", "\u2503");
 
-		
-	}
 }
