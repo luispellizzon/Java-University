@@ -13,14 +13,18 @@ public class PayByWeight {
 		ArrayList<Byte> userResults = customerWasteKg();	
 		
 		/* Pass the userResults variable as an argument so will be used as a parameter to calculate costs */
-		/* Print calculate results for each type of waste and total per annum, BOTTOM SIDE*/
+		/* Print Title of the table
+		 * Print Header of the table
+		 * Print results in a tabular format and aligned
+		 */
 		annualResults(userResults);
 	
 	}
 	
-	/*-- Get customer weekly waste inputs,
+	/*  Get customer weekly waste inputs,
 	 *  Start printing the top of the bold border, and print types of waste with its weights aligned,
-	 *  Return user inputs result as an arraylist to be easier to iterate over and output the bottom part of the table format aligned--*/
+	 *  Return user inputs result as an arraylist to be easier to iterate over and output the table with results
+	 */
 	private static ArrayList<Byte> customerWasteKg() {
 		
 		// Main title to tell user what needs to be the input
@@ -82,14 +86,15 @@ public class PayByWeight {
 		return wasteKgs;
 		
 		
-		/* { RESULTS WILL GO HERE } */
+		/* { RESULTS IN A TABULAR FORMAT WILL GO HERE } */
 		
 	}
 	
 	
 	/* Print each company with its costs and annual services aligned */
 	/* Use an ArrayList that contains how much weight a user will produce for each type of waste as a parameter to calculate how much each company will charge annually */
-	/* Print the bottom side of the bold border that contains the tabular format */
+	/* Print the bottom side of the bold border that contains the results in a tabular format 
+	 */
 	private static void annualResults(ArrayList<Byte> userResults) {
 		
 		/* Instantiate DecimalFormat to format all the results that will be outputted inside the table to meet the documented requirements*/
@@ -135,16 +140,16 @@ public class PayByWeight {
 		// Create an array to loop over each company name and calculate fees and costs 
 		String[] companiesName = {greenCleanName, countryCollectName, enviroName, wasteAwayName};
 		
-		/* TABLE HEADER WITH HEADER COLUMNS */
+		/* TABLE TITLE AND HEADERS WITH COLUMNS */
 		System.out.printf("%s%69s%58s\n", "\u2503", "Annual Waste Charges", "\u2503" );
 		System.out.printf("%s%127s\n", "\u2503", "\u2503");
 		System.out.printf("%s%s%16s%19s%21s%18s%17s%21s%3s\n","\u2503","Company Name", "Annual", "General", "Recycling", "Organic", "Glass", "Total Cost","\u2503");
 		System.out.printf("%s%33s%17s%13s%26s%13s%23s%2s\n", "\u2503","Service Fee", "Waste Cost", "Cost", "Waste Cost", "Cost", "(per annum)", "\u2503");
 		System.out.printf("%s%127s\n", "\u2503", "\u2503");
 		
+		
 		/* -- LOOP EXPLAINED */
 		/* For each loop, if the if statement nested inside the loop is true it will calculate the results for the given index using its specifics variables*/
-		
 		for(int i = 0; i < companiesName.length ; i++) {
 			
 			/* -- IF STATEMENT NESTED -- */
@@ -153,7 +158,7 @@ public class PayByWeight {
 			/* TOTAL COST will be calculated with the sum of all the wasteTotals + annual service fee */
 			
 			/*---- ALIGNMENT ----*/
-			/* The alignment will be negative in each value, so each value will have more flexibility and each NEXT value will have a fixed start,and the final bold border will have its fixed place*/
+			/* The alignment will be negative in each value, so each value will have more size flexibility and each NEXT value will have a fixed start. The final bold border will have its fixed place*/
 			
 			if( "Green Clean".equals(companiesName[i])) {
 				
