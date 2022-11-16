@@ -66,6 +66,8 @@ public class PayByWeight {
 		
 		
 		/*---- WHEN LOOP FINISH -----*/
+		// Close Scanner so a memory leak will not occur
+		sc.close();
 		// Print blanket line to give one line space between the inputs and the table output
 		System.out.println("");
 
