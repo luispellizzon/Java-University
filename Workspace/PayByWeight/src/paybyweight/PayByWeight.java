@@ -122,7 +122,7 @@ public class PayByWeight {
 		final String enviroName = "Enviro";
 		final int enviroFee = 150;
 		final float enviroGeneralWaste = 0.30f;
-		final int enviroRecycling = 0;
+		final byte enviroRecycling = 0;
 		final byte enviroOrganic = 0;
 		final byte enviroGlass = 0;
 		
