@@ -11,15 +11,27 @@ public class SkillsDemo2Main {
 		
 		
 		HealthPolicy policy = new HealthPolicy ();
-		
 		do {
 			policy.readAge();
 			
 			if (policy.getAge() >= 18) {
-				policy.readName();				//etc.
+				policy.readName();			
+				policy.readNumDependents();
+				
+				if(policy.getDependantNumber() > 0) {
+					policy.createDependants();
+					policy.getDependants();
+				}
+				policy.roomType();
+				policy.extraCares();
+				policy.printPolicyDetails();
+				
 			} else {
 				System.out.println("\nSorry, You Must Be Over 18 to Get a Quotation.");
-		}
+			}
+			
+			
+			
 			checkQuotationInput(); //QUOTATION
 			
 		} while (quotation == 'y');
@@ -33,7 +45,7 @@ public class SkillsDemo2Main {
 		while (quotationInput != true) {
 			try {
 				System.out.println("\n\tDo you want to get another quote? Y/N ");
-				quotation = reader.nextLine().toLowerCase().charAt(0);
+				quotation = reader.next().toLowerCase().charAt(0);
 				
 				if(quotation == 'y' || quotation == 'n') {
 					quotationInput = true;
