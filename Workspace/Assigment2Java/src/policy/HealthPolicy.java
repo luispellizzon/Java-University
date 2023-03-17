@@ -56,6 +56,10 @@ public class HealthPolicy {
 				userInput = false;
 			}
 		}
+		
+		if (age > 50) {
+			this.basicCost = (short) (this.basicCost + 80);
+		}
 		SkillsDemo2Main.reader.nextLine();
 	}
 	
@@ -119,7 +123,23 @@ public class HealthPolicy {
 				}
 			}
 			
-			arr[i] = new Dependant(dependantName, dependantAge);
+			switch ((i+1)) {
+			case 1:
+				arr[i] = new Dependant(dependantName, dependantAge, (short)250);
+				break;
+			case 2:
+				arr[i] = new Dependant(dependantName, dependantAge, (short)150);
+				break;
+			case 3: 
+				arr[i] = new Dependant(dependantName, dependantAge, (short)100);
+				break;
+			case 4:
+				arr[i] = new Dependant(dependantName, dependantAge, (short)50);
+				break;
+			case 5,6:
+				arr[i] = new Dependant(dependantName, dependantAge, (short)0);
+				break;
+			}
 			SkillsDemo2Main.reader.nextLine();
 		}
 		
@@ -247,22 +267,29 @@ public class HealthPolicy {
 	}
 	void printPolicyDetails () {
 		System.out.printf("%65s\n\n\n", "HCI Healthcare Policy");
-		System.out.printf("%-40s%s\n\n", "Name", "Luis Pellizzon");
-		System.out.printf("%-40s%s\n\n", "Number of dependants", "212");
+		System.out.printf("%-40s%s\n\n", "Name", this.userName);
+		System.out.printf("%-40s%s\n\n", "Number of dependants", this.dependantNumber);
 		
 		System.out.printf("%-40s%-28s%-6s%s\n\n", "", "Name of dependants", "Age", "Cost");
-		System.out.printf("%-40s%-28s%-7s%s\n", "", "Luis Pellizzon", "20", "300");
-		System.out.printf("%-40s%-28s%-7s%s\n", "", "Luis Pellizzon", "20", "300");
-		System.out.printf("%-40s%-28s%-7s%s\n", "", "Luis Pellizzon", "20", "300");
+		//for loop for dependants
+		for(int i=0; i < arr.length; i++) {
+			arr[i].displayData();
+		}
 	
 		
-		System.out.printf("\n%-75s%s\n\n", "Basic cost (outpatient care):", "212");
-		System.out.printf("%-40s%-35s%s\n\n", "Inpatient Cost:","YES","250");
-		System.out.printf("%-40s%-35s%s\n\n", "Room Type:","Private","250");
-		System.out.printf("%-40s%-35s%s\n\n", "Additional Extras:","Ortophedic care","250");
-		System.out.printf("%-75s%s\n\n", "Total before VAT:","250");
-		System.out.printf("%-75s%s\n\n", "VAT:","250");
-		System.out.printf("%-75s%s\n\n", "Total:","250");
+		System.out.printf("\n%-75s%s€\n\n", "Basic cost (outpatient care):", this.basicCost);
+		
+		if(inpatient == 'y') {
+			System.out.printf("%-40s%-35s%s€\n\n", "Inpatient Cost:","YES",this.inpatientCost);
+		} else {
+			System.out.printf("%-40s%-35s%s€\n\n", "Inpatient Cost:","NO", 0);
+		}
+		
+		System.out.printf("%-40s%-35s%s€\n\n", "Room Type:","Private","250");
+		System.out.printf("%-40s%-35s%s€\n\n", "Additional Extras:","Ortophedic care","250");
+		System.out.printf("%-75s%s€\n\n", "Total before VAT:","250");
+		System.out.printf("%-75s%s€\n\n", "VAT:","250");
+		System.out.printf("%-75s%s€\n\n", "Total:","250");
 		
 	}
 }
