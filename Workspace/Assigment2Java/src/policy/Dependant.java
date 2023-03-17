@@ -4,13 +4,15 @@ public class Dependant {
 	
 	private String name;
 	private byte age;
+	private short cost;
 
-	public Dependant(String dependantName, byte dependantAge) {
+	public Dependant(String dependantName, byte dependantAge, short dependantCost) {
 		this.name = dependantName;
 		this.age = dependantAge;
+		this.cost = dependantCost;
 	}
 
 	public void displayData() {
-		System.out.println("Name :" + this.name + "\nAge:" + this.age + "\n\n");
+		System.out.printf("%-40s%-28s%-7s%s€\n", "", this.name, this.age, this.cost);
 	}
 }
