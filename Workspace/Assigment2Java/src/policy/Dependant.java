@@ -15,4 +15,9 @@ public class Dependant {
 	public void displayData() {
 		System.out.printf("%-40s%-28s%-7s%s€\n", "", this.name, this.age, this.cost);
 	}
+
+	public short getDependantCost() {
+		
+		return this.cost;
+	}
 }
