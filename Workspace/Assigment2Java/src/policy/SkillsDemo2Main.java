@@ -10,8 +10,9 @@ public class SkillsDemo2Main {
 	public static void main(String[] args) {
 		
 		
-		HealthPolicy policy = new HealthPolicy ();
+		
 		do {
+			HealthPolicy policy = new HealthPolicy ();
 			policy.readAge();
 			
 			if (policy.getAge() >= 18) {
