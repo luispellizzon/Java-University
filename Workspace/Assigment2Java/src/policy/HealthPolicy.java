@@ -1,8 +1,12 @@
 package policy;
 
+
 public class HealthPolicy {
 
-	private short basicCost, roomTypeCost, inpatientCost, extraCareCost; // +80 if age > 50 // 0 < 18
+	private short basicCost, dependantsTotalCost = 0, roomTypeCost = 0, 
+			inpatientCost = 0, extraCareTotalCost, extraCareCost = 50, 
+			policyTotalCostBeforeVAT, policyTotalCostAfterVAT, VATCost; // +80 if age > 50 // 0 < 18
+	private float VATRate = 0.21f;
 	private byte age, dependantNumber, dependantAge, extraCareAmmount; //dependant 1=250 2=150 3=100 4=50 5> free up to 6
 	private String dependantName, userName, extraCareChoices; // dep name < 18
 	private char inpatient, roomType, extraCareInput, extraCareChoiceType;
@@ -111,7 +115,7 @@ public class HealthPolicy {
 					dependantAge = SkillsDemo2Main.reader.nextByte();
 					
 					
-					if(dependantAge < 0 || dependantAge > 18) {
+					if(dependantAge < 0 || dependantAge >= 18) {
 						throw new Exception();
 					} else {
 						userInput = true;	
@@ -140,6 +144,10 @@ public class HealthPolicy {
 				arr[i] = new Dependant(dependantName, dependantAge, (short)0);
 				break;
 			}
+			
+			for(int j = 0; j < arr.length; j++) {
+				dependantsTotalCost = (short) (dependantsTotalCost + arr[j].getDependantCost());
+			}
 			SkillsDemo2Main.reader.nextLine();
 		}
 		
@@ -157,34 +165,30 @@ public class HealthPolicy {
 					//while
 					while(userInput !=true) {
 						try {
-							System.out.println("Would You Like PRIVATE or SEMIPRIVATE? (P/S):");
+							System.out.println("Adding Inpatient Care Grants You With A Semi-Private Room\nWould You Like To Change To A Private Room? (Y/N):");
 							roomType = SkillsDemo2Main.reader.next().toLowerCase().charAt(0);
-							if(roomType == 'p') {
+							if(roomType == 'y') {
 								roomTypeCost = 100;
 								userInput = true;
-							} else if(roomType == 's'){
-								roomType = 0;
+							} else if(roomType == 'n'){
 								userInput = true;
 							} else {
-								throw new Exception();
+								throw new Exception("Please, Enter Only Y (YES) To Change To a Private Room Or N (NO).");
 							}
 						} catch (Exception e) {
-							System.out.println("Please Enter Only P for PRIVATE ROOM or S for SEMI-PRIVATE ROOM.");
+							System.out.println(e.getMessage());
 							userInput = false;
 						}
 					}
-					//
-					
 				}
 				else if(inpatient == 'n') {
-					inpatientCost = 0;
 					userInput = true;
 				}
 				else {
-					throw new Exception();
+					throw new Exception("Please, Enter Only Y for YES or N to NO\n");
 				}
 			} catch (Exception e) {
-				System.out.println("Please, Enter Only Y for Yes or N to No\n");
+				System.out.println(e.getMessage());
 				userInput = false;
 			}
 		}
@@ -208,10 +212,35 @@ public class HealthPolicy {
 							
 							switch(extraCareAmmount) {
 							case 0:
-								extraCareCost = 0;
+								extraCareTotalCost = 0;
 								userInput = true;
 							case 1:
-								;
+								System.out.println("Please, Choose 1 Of The Following:");
+								System.out.println("A) Orthopaedic care\nB) Ophthalmic care\nC) Maternity care\nD) Fertility care\nE) Psychiatric care\n");
+								userInput = false;
+								while(userInput != true) {
+									try {
+										System.out.println("Extra Care Choice: ");
+										extraCareChoiceType = SkillsDemo2Main.reader.next().toLowerCase().charAt(0);
+										
+										
+										if(	extraCareChoiceType != 'a' &&
+											extraCareChoiceType != 'b' &&
+											extraCareChoiceType != 'c' &&
+											extraCareChoiceType != 'd' &&
+											extraCareChoiceType != 'e') {
+											throw new Exception("Please, Choose One Of The Letters A, B, C, D or E.");
+										} else{
+											extraCareChoices = extraCareChoices + extraCareChoiceType;
+											extraCareTotalCost = (short)(extraCareTotalCost + 50);
+											userInput = true;
+										}
+									} catch (Exception e) {
+										System.out.println(e.getMessage());
+										userInput = false;
+									}
+								};
+								break;
 							case 2:
 								System.out.println("Please, Choose 2 Of The Following:");
 								System.out.println("A) Orthopaedic care\nB) Ophthalmic care\nC) Maternity care\nD) Fertility care\nE) Psychiatric care\n");
@@ -232,6 +261,7 @@ public class HealthPolicy {
 												throw new Exception("Please, Choose One Of The Letters A, B, C, D or E.");
 											} else if(extraCareChoiceType != prevChoice) {
 												extraCareChoices = extraCareChoices + extraCareChoiceType;
+												extraCareTotalCost = (short)(extraCareTotalCost + 50);
 												prevChoice = extraCareChoiceType;
 												userInput = true;
 											} else {
@@ -254,7 +284,7 @@ public class HealthPolicy {
 					}
 				} else if(extraCareInput == 'n') {
 					extraCareAmmount = 0;
-					extraCareCost = 0;
+					extraCareTotalCost = 0;
 					userInput = true;
 				} else {
 					throw new Exception();
@@ -265,6 +295,20 @@ public class HealthPolicy {
 			}
 		}
 	}
+	
+	public short getTotalCostBeforeVAT() {
+		policyTotalCostBeforeVAT = (short)(basicCost + dependantsTotalCost + inpatientCost + roomTypeCost + extraCareTotalCost);
+		this.VATCost = (short)(policyTotalCostBeforeVAT * VATRate);
+		return policyTotalCostBeforeVAT;
+		
+	}
+	
+	public short getTotalCostAfterVAT() {
+		policyTotalCostAfterVAT = (short) (policyTotalCostBeforeVAT + VATCost) ;
+		return policyTotalCostAfterVAT;
+		
+	}
+	
 	void printPolicyDetails () {
 		System.out.printf("%65s\n\n\n", "HCI Healthcare Policy");
 		System.out.printf("%-40s%s\n\n", "Name", this.userName);
@@ -272,9 +316,12 @@ public class HealthPolicy {
 		
 		System.out.printf("%-40s%-28s%-6s%s\n\n", "", "Name of dependants", "Age", "Cost");
 		//for loop for dependants
-		for(int i=0; i < arr.length; i++) {
-			arr[i].displayData();
+		if(arr != null) {
+			for(int i=0; i < arr.length; i++) {
+				arr[i].displayData();
+			}
 		}
+		
 	
 		
 		System.out.printf("\n%-75s%s€\n\n", "Basic cost (outpatient care):", this.basicCost);
@@ -282,14 +329,47 @@ public class HealthPolicy {
 		if(inpatient == 'y') {
 			System.out.printf("%-40s%-35s%s€\n\n", "Inpatient Cost:","YES",this.inpatientCost);
 		} else {
-			System.out.printf("%-40s%-35s%s€\n\n", "Inpatient Cost:","NO", 0);
+			System.out.printf("%-40s%-35s%s€\n\n", "Inpatient Cost:","NO", this.inpatientCost);
 		}
 		
-		System.out.printf("%-40s%-35s%s€\n\n", "Room Type:","Private","250");
-		System.out.printf("%-40s%-35s%s€\n\n", "Additional Extras:","Ortophedic care","250");
-		System.out.printf("%-75s%s€\n\n", "Total before VAT:","250");
-		System.out.printf("%-75s%s€\n\n", "VAT:","250");
-		System.out.printf("%-75s%s€\n\n", "Total:","250");
+		if(roomType == 'y') {
+			System.out.printf("%-40s%-35s%s€\n\n", "Room Type:","Private",this.roomTypeCost);
+		} else if(roomType == 'n') {
+			System.out.printf("%-40s%-35s%s€\n\n", "Room Type:","Semi-Private",this.roomTypeCost);
+		} else {
+			System.out.printf("%-40s%-35s%s€\n\n", "Room Type:","NA",this.roomTypeCost);
+		}
+		
+		System.out.printf("%-40s%-35s%s\n\n", "Additional Extras:","Extra Care Type","Cost");
+		
+		if(extraCareChoices != null) {
+			for(int i = 0; i < extraCareChoices.length(); i++) {
+				switch(extraCareChoices.charAt(i)) {
+				case 'a':
+					System.out.printf("%-40s%-35s%s€\n", "","Orthopaedic care",this.extraCareCost);
+					break;
+				case 'b':
+					System.out.printf("%-40s%-35s%s€\n", "","Ophthalmic care",this.extraCareCost);
+					break;
+				case 'c':
+					System.out.printf("%-40s%-35s%s€\n", "","Maternity care",this.extraCareCost);
+					break;
+				case 'd':
+					System.out.printf("%-40s%-35s%s€\n", "","Fertility care",this.extraCareCost);
+					break;
+				case 'e':
+					System.out.printf("%-40s%-35s%s€\n", "","Psychiatric care",this.extraCareCost);
+					break;
+				
+				}
+			
+			}
+		}
+		
+		
+		System.out.printf("\n%-75s%s€\n\n", "Total before VAT:", getTotalCostBeforeVAT());
+		System.out.printf("%-75s%s€\n\n", "VAT:",this.VATCost);
+		System.out.printf("%-75s%s€\n\n", "Total:", getTotalCostAfterVAT());
 		
 	}
 }
