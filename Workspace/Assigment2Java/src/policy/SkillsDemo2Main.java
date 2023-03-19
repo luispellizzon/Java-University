@@ -10,7 +10,7 @@ public class SkillsDemo2Main {
 	public static void main(String[] args) {
 		
 		
-		
+		System.out.println("WELCOME TO OUR HEALTH POLICY QUOTATION SYSTEM!\n");
 		do {
 			HealthPolicy policy = new HealthPolicy ();
 			policy.readAge();
@@ -28,7 +28,7 @@ public class SkillsDemo2Main {
 				policy.printPolicyDetails();
 				
 			} else {
-				System.out.println("\nSorry, You Must Be Over 18 to Get a Quotation.");
+				System.out.println("\nSorry, You Must Be Over 18 to Get a Quotation!");
 			}
 			
 			
@@ -36,7 +36,7 @@ public class SkillsDemo2Main {
 			checkQuotationInput(); //QUOTATION
 			
 		} while (quotation == 'y');
-		
+		reader.close();
 		System.out.println("\nTHANKS FOR USING OUR HEALTH POLICY QUOTATION SYSTEM =).");
 	}
 	
@@ -45,7 +45,7 @@ public class SkillsDemo2Main {
 		
 		while (quotationInput != true) {
 			try {
-				System.out.println("\n\tDo you want to get another quote? Y/N ");
+				System.out.print("\nDo you want to get another quote? Y/N : ");
 				quotation = reader.next().toLowerCase().charAt(0);
 				
 				if(quotation == 'y' || quotation == 'n') {
