@@ -5,8 +5,8 @@ public class HealthPolicy {
 
 	private short basicCost, dependantsTotalCost = 0, roomTypeCost = 0, 
 			inpatientCost = 0, extraCareTotalCost, extraCareCost = 50, 
-			policyTotalCostBeforeVAT, policyTotalCostAfterVAT, VATCost; // +80 if age > 50 // 0 < 18
-	private float VATRate = 0.21f;
+			policyTotalCostBeforeVAT; // +80 if age > 50 // 0 < 18
+	private float VATRate = 0.21f, VATCost, policyTotalCostAfterVAT;
 	private byte age, dependantNumber, dependantAge, extraCareAmmount; //dependant 1=250 2=150 3=100 better of making dependant class 4=50 5> free up to 6
 	private String dependantName, userName, extraCareChoices; // dep name < 18
 	private char inpatient, roomType, extraCareInput, extraCareChoiceType;
@@ -293,13 +293,13 @@ public class HealthPolicy {
 	
 	public short getTotalCostBeforeVAT() {
 		policyTotalCostBeforeVAT = (short)(basicCost + dependantsTotalCost + inpatientCost + roomTypeCost + extraCareTotalCost);
-		this.VATCost = (short)(policyTotalCostBeforeVAT * VATRate);
+		this.VATCost = policyTotalCostBeforeVAT * VATRate;
 		return policyTotalCostBeforeVAT;
 		
 	}
 	
-	public short getTotalCostAfterVAT() {
-		policyTotalCostAfterVAT = (short) (policyTotalCostBeforeVAT + VATCost) ;
+	public float getTotalCostAfterVAT() {
+		policyTotalCostAfterVAT = policyTotalCostBeforeVAT + VATCost ;
 		return policyTotalCostAfterVAT;
 		
 	}
@@ -319,20 +319,20 @@ public class HealthPolicy {
 		
 	
 		
-		System.out.printf("\n%-75s%s€\n\n", "Basic cost (outpatient care):", this.basicCost);
+		System.out.printf("\n%-75s€%s\n\n", "Basic cost (outpatient care):", this.basicCost);
 		
 		if(inpatient == 'y') {
-			System.out.printf("%-40s%-35s%s€\n\n", "Inpatient Cost:","YES",this.inpatientCost);
+			System.out.printf("%-40s%-35s€%s\n\n", "Inpatient Cost:","YES",this.inpatientCost);
 		} else {
-			System.out.printf("%-40s%-35s%s€\n\n", "Inpatient Cost:","NO", this.inpatientCost);
+			System.out.printf("%-40s%-35s€%s\n\n", "Inpatient Cost:","NO", this.inpatientCost);
 		}
 		
 		if(roomType == 'y') {
-			System.out.printf("%-40s%-35s%s€\n\n", "Room Type:","Private",this.roomTypeCost);
+			System.out.printf("%-40s%-35s€%s\n\n", "Room Type:","Private",this.roomTypeCost);
 		} else if(roomType == 'n') {
-			System.out.printf("%-40s%-35s%s€\n\n", "Room Type:","Semi-Private",this.roomTypeCost);
+			System.out.printf("%-40s%-35s€%s\n\n", "Room Type:","Semi-Private",this.roomTypeCost);
 		} else {
-			System.out.printf("%-40s%-35s%s€\n\n", "Room Type:","NA",this.roomTypeCost);
+			System.out.printf("%-40s%-35s€%s\n\n", "Room Type:","NA",this.roomTypeCost);
 		}
 		
 		
@@ -341,19 +341,19 @@ public class HealthPolicy {
 			for(int i = 0; i < extraCareChoices.length(); i++) {
 				switch(extraCareChoices.charAt(i)) {
 				case 'a':
-					System.out.printf("%-40s%-35s%s€\n", "","Orthopaedic care",this.extraCareCost);
+					System.out.printf("%-40s%-35s€%s\n", "","Orthopaedic care",this.extraCareCost);
 					break;
 				case 'b':
-					System.out.printf("%-40s%-35s%s€\n", "","Ophthalmic care",this.extraCareCost);
+					System.out.printf("%-40s%-35s€%s\n", "","Ophthalmic care",this.extraCareCost);
 					break;
 				case 'c':
-					System.out.printf("%-40s%-35s%s€\n", "","Maternity care",this.extraCareCost);
+					System.out.printf("%-40s%-35s€%s\n", "","Maternity care",this.extraCareCost);
 					break;
 				case 'd':
-					System.out.printf("%-40s%-35s%s€\n", "","Fertility care",this.extraCareCost);
+					System.out.printf("%-40s%-35s€%s\n", "","Fertility care",this.extraCareCost);
 					break;
 				case 'e':
-					System.out.printf("%-40s%-35s%s€\n", "","Psychiatric care",this.extraCareCost);
+					System.out.printf("%-40s%-35s€%s\n", "","Psychiatric care",this.extraCareCost);
 					break;
 				
 				}
@@ -362,8 +362,8 @@ public class HealthPolicy {
 			System.out.printf("%-40s%-35s\n\n", "Additional Extras:","NONE");
 		}
 		
-		System.out.printf("\n%-75s%s€\n\n", "Total before VAT:", getTotalCostBeforeVAT());
-		System.out.printf("%-75s%s€\n\n", "VAT:",this.VATCost);
-		System.out.printf("%-75s%s€\n\n", "Total:", getTotalCostAfterVAT());
+		System.out.printf("\n%-75s€%s\n\n", "Total before VAT:", getTotalCostBeforeVAT());
+		System.out.printf("%-75s€%.2f\n\n", "VAT:",this.VATCost);
+		System.out.printf("%-75s€%.2f\n\n", "Total:", getTotalCostAfterVAT());
 	}
 }
