@@ -17,7 +17,6 @@ public class Dependant {
 	}
 
 	public short getDependantCost() {
-		
 		return this.cost;
 	}
 }

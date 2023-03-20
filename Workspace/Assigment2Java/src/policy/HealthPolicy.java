@@ -25,22 +25,6 @@ public class HealthPolicy {
 		return dependantNumber;
 	}
 	
-	Dependant[] getDependants() {
-		return arr;
-	}
-	
-	char getRoomType(){
-		return roomType;
-	}
-
-	short getRoomTypeCost() {
-		return roomTypeCost;
-	}
-	
-	short getInpatientCost() {
-		return inpatientCost;
-	}
-	
 	public void readAge() {
 		userInput = false;
 		
@@ -307,18 +291,14 @@ public class HealthPolicy {
 	void printPolicyDetails () {
 		System.out.printf("\n\n%65s\n\n\n", "HCI Healthcare Policy");
 		System.out.printf("%-40s%s\n\n", "Name", this.userName);
-		System.out.printf("%-40s%s\n\n", "Number of dependants", this.dependantNumber);
-		
-		System.out.printf("%-40s%-28s%-6s%s\n\n", "", "NAME OF DEPENDANTS", "AGE", "COST");
+		System.out.printf("%-40s%s\n", "Number of dependants", this.dependantNumber);
 		//for loop for dependants
 		if(arr != null) {
+			System.out.printf("\n%-40s%-28s%-7s%s\n\n", "", "NAME OF DEPENDANTS", "AGE", "COST");
 			for(int i=0; i < arr.length; i++) {
 				arr[i].displayData();
 			}
 		}
-		
-	
-		
 		System.out.printf("\n%-75s€%s\n\n", "Basic cost (outpatient care):", this.basicCost);
 		
 		if(inpatient == 'y') {
@@ -359,7 +339,7 @@ public class HealthPolicy {
 				}
 			}
 		}else {
-			System.out.printf("%-40s%-35s\n\n", "Additional Extras:","NONE");
+			System.out.printf("%-40s%-35s\n", "Additional Extras:","NONE");
 		}
 		
 		System.out.printf("\n%-75s€%s\n\n", "Total before VAT:", getTotalCostBeforeVAT());

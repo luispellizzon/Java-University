@@ -21,7 +21,6 @@ public class SkillsDemo2Main {
 				
 				if(policy.getDependantNumber() > 0) {
 					policy.createDependants();
-					policy.getDependants();
 				}
 				policy.roomType();
 				policy.extraCares();
