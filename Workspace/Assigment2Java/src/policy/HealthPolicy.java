@@ -390,7 +390,7 @@ public class HealthPolicy {
 		/*IF ARRAY EXISTS, AND HAS DEPENDANT OBJECT INSIDE */
 		if(arr != null) {
 			/* PRINT LIST OF DEPENDANTS */
-			System.out.printf("\n%-40s%-28s%-7s%s\n\n", "", "NAME OF DEPENDANTS", "AGE", "COST");
+			System.out.printf("\n%-40s%-30s%-20s%s\n\n", "", "NAME OF DEPENDANTS", "AGE", "COST");
 			
 			/* FOR EACH DEPENDANT IN THE ARRAY
 			 * PRINT DEPENDANT DETAIL*/
@@ -400,36 +400,36 @@ public class HealthPolicy {
 		}
 		
 		/* PRINT BASIC COST */
-		System.out.printf("\n%-75s€%s\n\n", "Basic cost (outpatient care):", this.basicCost);
+		System.out.printf("\n%-90s%s\n\n", "Basic cost (outpatient care):", SkillsDemo2Main.euroFormat.format(this.basicCost));
 		
 		/* IF THERE IS INPATIENT COST THEN*/
 		if(inpatient == 'y') {
 			/* PRINT INPATIENT COST SAYING YES WITH COST */
-			System.out.printf("%-40s%-35s€%s\n\n", "Inpatient Cost:","YES",this.inpatientCost);
+			System.out.printf("%-40s%-50s%s\n\n", "Inpatient Cost:","YES",SkillsDemo2Main.euroFormat.format(this.inpatientCost));
 		} else {
 			/* PRINT INPATIENT COST SAYING NO WITH 0 COST */
-			System.out.printf("%-40s%-35s€%s\n\n", "Inpatient Cost:","NO", this.inpatientCost);
+			System.out.printf("%-40s%-50s%s\n\n", "Inpatient Cost:","NO", SkillsDemo2Main.euroFormat.format(this.inpatientCost));
 		}
 		
 		/* IF USER ADDED PRIVATE ROOM */
 		if(roomType == 'y') {
 			/* PRINT PRIVATE ROOM AND COST */
-			System.out.printf("%-40s%-35s€%s\n\n", "Room Type:","Private",this.roomTypeCost);
+			System.out.printf("%-40s%-50s%s\n\n", "Room Type:","Private",SkillsDemo2Main.euroFormat.format(this.roomTypeCost));
 		} else if(roomType == 'n') {
 			/* PRINT SEMI-PRIVATE ROOM AND COST */
-			System.out.printf("%-40s%-35s%s\n\n", "Room Type:","Semi-Private","INCLUDED");
+			System.out.printf("%-40s%-50s%s\n\n", "Room Type:","Semi-Private","INCLUDED");
 			
 			/* IF ROOMTYPE VARIABLE IS NULL
 			 * BECAUSE USER DOES NOT WANT INPATIENT CARE */
 		} else {
 			/* PRINT NA ROOM AND 0 COST */
-			System.out.printf("%-40s%-35s€%s\n\n", "Room Type:","NA",this.roomTypeCost);
+			System.out.printf("%-40s%-50s%s\n\n", "Room Type:","NA",SkillsDemo2Main.euroFormat.format(this.roomTypeCost));
 		}
 		
 		/* IF USER ADDED EXTRA CARE CHOICES */
 		if(extraCareChoices != null) {
 			/* PRINT ADDITIONAL EXTRAS LIST*/
-			System.out.printf("%-40s%-35s%s\n\n", "Additional Extras:","EXTRA CARE TYPE","COST");
+			System.out.printf("%-40s%-50s%s\n\n", "Additional Extras:","EXTRA CARE TYPE","COST");
 			
 			/* LOOP EACH LETTER IN THE STRING,
 			 * EACH LETTER REPRESENTS A EXTRA CARE CHOICE */
@@ -439,32 +439,32 @@ public class HealthPolicy {
 				 * THEN PRINT EXTRA CARE CHOICE WITH ITS COST*/
 				switch(extraCareChoices.charAt(i)) {
 				case 'a':
-					System.out.printf("%-40s%-35s€%s\n", "","Orthopaedic care",this.extraCareCost);
+					System.out.printf("%-40s%-50s%s\n", "","Orthopaedic care",SkillsDemo2Main.euroFormat.format(this.extraCareCost));
 					break;
 				case 'b':
-					System.out.printf("%-40s%-35s€%s\n", "","Ophthalmic care",this.extraCareCost);
+					System.out.printf("%-40s%-50s%s\n", "","Ophthalmic care",SkillsDemo2Main.euroFormat.format(this.extraCareCost));
 					break;
 				case 'c':
-					System.out.printf("%-40s%-35s€%s\n", "","Maternity care",this.extraCareCost);
+					System.out.printf("%-40s%-50s%s\n", "","Maternity care",SkillsDemo2Main.euroFormat.format(this.extraCareCost));
 					break;
 				case 'd':
-					System.out.printf("%-40s%-35s€%s\n", "","Fertility care",this.extraCareCost);
+					System.out.printf("%-40s%-50s%s\n", "","Fertility care",SkillsDemo2Main.euroFormat.format(this.extraCareCost));
 					break;
 				case 'e':
-					System.out.printf("%-40s%-35s€%s\n", "","Psychiatric care",this.extraCareCost);
+					System.out.printf("%-40s%-50s%s\n", "","Psychiatric care",SkillsDemo2Main.euroFormat.format(this.extraCareCost));
 					break;
 				}
 			}
 		}else {
 			/* PRINT NONE IF THERE IS NO EXTRA CARE ADDED*/
-			System.out.printf("%-40s%-35s\n", "Additional Extras:","NONE");
+			System.out.printf("%-40s%-50s\n", "Additional Extras:","NONE");
 		}
 
 		/* PRINT TOTAL BEFORE VAT */
-		System.out.printf("\n%-75s€%s\n\n", "Total before VAT:", getTotalCostBeforeVAT());
+		System.out.printf("\n%-90s%s\n\n", "Total before VAT:", SkillsDemo2Main.euroFormat.format(getTotalCostBeforeVAT()));
 		/* PRINT VAT COST */
-		System.out.printf("%-75s€%.2f\n\n", "VAT:",this.VATCost);
+		System.out.printf("%-90s%s\n\n", "VAT:",SkillsDemo2Main.euroFormat.format(this.VATCost));
 		/*PRINT TOTAL AFTER VAT*/
-		System.out.printf("%-75s€%.2f\n\n", "Total:", getTotalCostAfterVAT());
+		System.out.printf("%-90s%s\n\n", "Total:", SkillsDemo2Main.euroFormat.format(getTotalCostAfterVAT()));
 	}
 }

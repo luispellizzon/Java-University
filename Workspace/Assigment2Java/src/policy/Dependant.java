@@ -15,7 +15,7 @@ public class Dependant {
 	
 	/* DISPLAY DEPENDANT DETAILS */
 	public void displayData() {
-		System.out.printf("%-40s%-28s%-7s€%s\n", "", this.name, this.age, this.cost);
+		System.out.printf("%-40s%-30s%-20s%s\n", "", this.name, this.age, SkillsDemo2Main.euroFormat.format(this.cost));
 	}
 
 	/* GETTER FUNCTION TO GET DEPENDANT COST */

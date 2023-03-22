@@ -4,13 +4,14 @@ package policy;
  *@date 22/03/2023
  */
 import java.util.Scanner;
-
+import java.text.DecimalFormat;
 public class SkillsDemo2Main {
 	/* SETTING GLOBAL VARIABLES */
 	private static char quotation;
 	private static boolean quotationInput;
 	public static Scanner reader = new Scanner(System.in);
-
+	public static DecimalFormat euroFormat = new DecimalFormat("€#,##0.00");
+			
 	public static void main(String[] args) {
 		/* WELCOMING THE USER*/
 		System.out.println("WELCOME TO OUR HEALTH POLICY QUOTATION SYSTEM!\n");
