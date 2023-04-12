@@ -18,20 +18,28 @@ public class PaymentCalculator {
 		do {
 			getPPSN();
 			showEmployeeMenuOptionsAndGetUserInput();
-			Employee employee = null;
+			Employee employee = new Employee();
+			employee.setPPSN(PPSN);
 			switch(employeeMenuChoice) {
 			case 'a':
 				employee = new Principal();
+				((Principal) employee).getNumberOfTeachers();
 				break;
 			case 'f':
 				employee = new FullTime();
+				((FullTime) employee).getAbsentDays();
+				((FullTime) employee).getScalePoints();
+				((FullTime) employee).getAmmountOfExamScriptsDone();
+				
 				break;
 			case 'p':
 				employee = new PartTime();
+				((PartTime) employee).getHoursWorked();
+				((PartTime) employee).getScalePoints();
+				((PartTime) employee).getAmmountOfExamScriptsDone();
 				break;
 			}
 			
-			System.out.println(employee);
 			
 		} while (calculatePayment == 'y');
 		reader.close();

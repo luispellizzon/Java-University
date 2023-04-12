@@ -2,12 +2,12 @@
 public class Employee {
 		private String employeePPSN;
 		private float additionalPayment, grossPay, PRSI,
-		tax, netPay, firstTaxRate = 0.22f, secondTaxRate = 0.42f, PRSIRate = 0.04f;
+		tax, netPay, firstTaxCost, secondTaxCost,firstTaxRate = 0.22f, secondTaxRate = 0.42f, PRSIRate = 0.04f;
 		
 		
-		public void setPPSN() {
+		public void setPPSN(String ppsn) {
 			//get ppsn
-			System.out.print("Enter PPSN:");
+			System.out.println("Enter PPSN:" + ppsn);
 
 		}
 		public void setGrossPay(float employeeGrossPay) {
