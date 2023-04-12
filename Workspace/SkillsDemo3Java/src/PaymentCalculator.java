@@ -1,11 +1,13 @@
 import java.text.DecimalFormat;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PaymentCalculator {
 	public static Scanner reader = new Scanner(System.in);
 	public static DecimalFormat euroFormat = new DecimalFormat("€#,##0.00");
 	private static char calculatePayment, employeeMenuChoice, menuChoice;
-	private static boolean menuInput;
+	private static boolean menuInput, PPSNInput;
 	private static String PPSN;
 
 	public static void main(String[] args) {
@@ -15,7 +17,21 @@ public class PaymentCalculator {
 		/* DOWHILE LOOP TO RUN IF USER WANTS TO DO ANOTHER PAYMENT CHECK*/
 		do {
 			getPPSN();
-			employeeMenu();
+			showEmployeeMenuOptionsAndGetUserInput();
+			Employee employee = null;
+			switch(employeeMenuChoice) {
+			case 'a':
+				employee = new Principal();
+				break;
+			case 'f':
+				employee = new FullTime();
+				break;
+			case 'p':
+				employee = new PartTime();
+				break;
+			}
+			
+			System.out.println(employee);
 			
 		} while (calculatePayment == 'y');
 		reader.close();
@@ -24,13 +40,28 @@ public class PaymentCalculator {
 	}
 	
 	private static void getPPSN() {
-		System.out.print("Enter PPSN:");
-		PPSN = reader.next();
-		
-		checkPPSNPattern(PPSN);
+		PPSNInput = false;
+		while (PPSNInput != true) {
+			try {
+				System.out.print("Enter PPSN:");
+				PPSN = reader.next();
+				
+				if(!checkPPSNPattern(PPSN)) {
+					throw new Exception("Please, PPSN Should Be 7 Digits Followed By a Letter!\n");
+				} else {
+					PPSNInput = true;
+				}
+			} catch (Exception e) {
+				/* GET ERROR MESSAGE AND PRINT
+				 * KEEP THE VARIABLE FALSE TO RUN AGAIN THE WHILE LOOP*/
+				System.out.println(e.getMessage());
+				PPSNInput = false;
+			}
+		}
 	}
 	
-	private static void employeeMenu() {
+	// show employee menu and get input
+	private static void showEmployeeMenuOptionsAndGetUserInput() {
 		System.out.print("\nPlease, Select One Of The Choices Bellow.\nCalculate Payment For:\nA)Principal\nB)Teacher\n");
 		menuInput = false;
 
@@ -41,11 +72,29 @@ public class PaymentCalculator {
 				System.out.print("Enter Choice:");
 				menuChoice = reader.next().toLowerCase().charAt(0);
 				
-				if(menuChoice == 'a' || menuChoice == 'b') {
+				if(menuChoice == 'a') {
 					employeeMenuChoice = menuChoice;
 					menuInput = true;
-				} else {
-					throw new Exception("Please, Enter Only A (Pricipal) or B (Teacher)!\n");
+				} else if(menuChoice == 'b'){
+					while (menuInput != true) {
+						try {
+							System.out.print("\nIs The Teacher Full-Time(F) Or Part-Time(P)? Enter F or P: ");
+							menuChoice = reader.next().toLowerCase().charAt(0);
+							if(menuChoice == 'f' || menuChoice == 'p') {
+								employeeMenuChoice = menuChoice;
+								menuInput = true;
+							} else {
+								throw new Exception("Please, Enter Only F (Full-Time) or P (Part-Time)!");
+							}
+						}catch(Exception e) {
+							/* GET ERROR MESSAGE AND PRINT
+							 * KEEP THE VARIABLE FALSE TO RUN AGAIN THE WHILE LOOP*/
+							System.out.println(e.getMessage());
+							menuInput = false;
+						}
+					}
+				}else {
+					throw new Exception("Please, Enter Only A (Principal) or B (Teacher)!\n");
 				}
 			} catch (Exception e) {
 				/* GET ERROR MESSAGE AND PRINT
@@ -54,14 +103,18 @@ public class PaymentCalculator {
 				menuInput = false;
 			}
 		}
-		System.out.println(employeeMenuChoice);
-		
-		
 	}
 
-	
-	private static void checkPPSNPattern(String ppsnInput) {
-		
+	// check ppsn pattern
+	private static boolean checkPPSNPattern(String ppsnInput) {
+		Pattern PPSNpattern = Pattern.compile("^\\d{7}[A-Z]{1}$", Pattern.CASE_INSENSITIVE);
+	    Matcher matcher = PPSNpattern.matcher(ppsnInput);
+	    boolean isPPSN = matcher.find();
+		if(isPPSN) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 
