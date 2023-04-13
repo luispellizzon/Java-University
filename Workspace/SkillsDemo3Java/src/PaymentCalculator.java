@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class PaymentCalculator {
 	public static Scanner reader = new Scanner(System.in);
-	public static DecimalFormat euroFormat = new DecimalFormat("€#,##0.00");
+	public static DecimalFormat euroFormat = new DecimalFormat("€###,##0.00");
 	private static char calculatePayment, employeeMenuChoice, menuChoice;
 	private static boolean menuInput, PPSNInput;
 	private static String PPSN;
@@ -16,14 +16,13 @@ public class PaymentCalculator {
 		
 		/* DOWHILE LOOP TO RUN IF USER WANTS TO DO ANOTHER PAYMENT CHECK*/
 		do {
-			getPPSN();
+			getAndCheckPPSNInput();
 			showEmployeeMenuOptionsAndGetUserInput();
 			Employee employee = new Employee();
-			employee.setPPSN(PPSN);
 			switch(employeeMenuChoice) {
 			case 'a':
 				employee = new Principal();
-				((Principal) employee).getNumberOfTeachers();
+				((Principal) employee).getNumberOfTeachers();				
 				break;
 			case 'f':
 				employee = new FullTime();
@@ -39,7 +38,12 @@ public class PaymentCalculator {
 				((PartTime) employee).getAmmountOfExamScriptsDone();
 				break;
 			}
-			
+			employee.setPPSN(PPSN);
+			employee.calculateGrossPay();
+			employee.calculatePRSI();
+			employee.calculateTax();
+			employee.calculateNetPay();
+			employee.displayPaymentDetails();
 			
 		} while (calculatePayment == 'y');
 		reader.close();
@@ -47,7 +51,7 @@ public class PaymentCalculator {
 		System.out.println("\nTHANKS FOR USING OUR PAYMENT CALCULATOR SYSTEM =).");
 	}
 	
-	private static void getPPSN() {
+	private static void getAndCheckPPSNInput() {
 		PPSNInput = false;
 		while (PPSNInput != true) {
 			try {
@@ -125,5 +129,4 @@ public class PaymentCalculator {
 		}
 	}
 	
-
 }
