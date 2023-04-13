@@ -14,6 +14,9 @@ public class Principal extends Employee {
 			try {
 				System.out.print("\nEnter Number Of Teachers In The School: ");
 				teachersNumber = PaymentCalculator.reader.nextInt();
+				if(teachersNumber < 0) {
+					throw new Exception("\u001B[31m"+"Please, Enter A Positive Number!"+"\u001B[0m");
+				}
 				if(teachersNumber >= 200) {
 					setAdditionalPayment(1196.67f);
 				}
@@ -28,7 +31,7 @@ public class Principal extends Employee {
 				}
 				teachersNumberInput = true;
 			} catch(Exception e){
-				System.out.println("Not valid");
+				System.out.println("\u001B[31m"+"Please, Enter A Positive Whole Number!"+"\u001B[0m");
 				PaymentCalculator.reader.nextLine();
 				teachersNumberInput = false;
 			}
