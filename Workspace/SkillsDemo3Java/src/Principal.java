@@ -9,33 +9,34 @@ public class Principal extends Employee {
 	
 	//get number of teachers
 	protected void getNumberOfTeachers() {
+		String RED = "\u001B[31m";
+		String RESET_STYLE = "\u001B[0m";
 		boolean teachersNumberInput = false;
 		while(teachersNumberInput != true) {
 			try {
 				System.out.print("\nEnter Number Of Teachers In The School: ");
 				teachersNumber = PaymentCalculator.reader.nextInt();
 				if(teachersNumber < 0) {
-					throw new Exception("\u001B[31m"+"Please, Enter A Positive Number!"+"\u001B[0m");
+					throw new Exception();
 				}
 				if(teachersNumber >= 200) {
-					setAdditionalPayment(1196.67f);
+					addAdditionalPayment(1196.67f);
 				}
 				else if(teachersNumber >= 100){
-					setAdditionalPayment(1019.83f);
+					addAdditionalPayment(1019.83f);
 				}
 				else if(teachersNumber >= 10) {
-					setAdditionalPayment(869.33f);
+					addAdditionalPayment(869.33f);
 				}
 				else {
-					setAdditionalPayment(775.83f);
+					addAdditionalPayment(775.83f);
 				}
 				teachersNumberInput = true;
 			} catch(Exception e){
-				System.out.println("\u001B[31m"+"Please, Enter A Positive Whole Number!"+"\u001B[0m");
+				System.out.println(RED + "Please, Enter 0 Or A Positive Whole Number!" + RESET_STYLE);
 				PaymentCalculator.reader.nextLine();
 				teachersNumberInput = false;
 			}
 		}
 	}
-	
 }
