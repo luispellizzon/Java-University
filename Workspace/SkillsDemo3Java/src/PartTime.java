@@ -2,10 +2,7 @@
 public class PartTime extends Teacher{
 	private float hours, hourRate = 34.03f;
 
-	
 	protected void getHoursWorked() {
-		String RED = "\u001B[31m";
-		String RESET_STYLE = "\u001B[0m";
 		//get hours 
 		boolean hoursInput = false;
 		while(hoursInput != true) {
@@ -19,7 +16,7 @@ public class PartTime extends Teacher{
 					hoursInput = true;
 				}
 			} catch(Exception e){
-				System.out.println(RED + "Please, Enter 0 Or A Positive Number!" + RESET_STYLE);
+				System.out.println(Styles.ERROR_MESSAGE_COLOR + "Please, Enter 0 Or A Positive Number!" + Styles.RESET_STYLE);
 				PaymentCalculator.reader.nextLine();
 				hoursInput = false;
 			}

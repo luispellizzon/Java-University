@@ -5,8 +5,6 @@ public class Teacher extends Employee {
 	private float examScriptRate = 10.18f, scriptsPayment;
 
 	protected void getScalePoints(){
-		String RED = "\u001B[31m";
-		String RESET_STYLE = "\u001B[0m";
 		//get scale points
 		boolean scalePointsInput = false;
 		while(scalePointsInput != true) {
@@ -30,7 +28,7 @@ public class Teacher extends Employee {
 				}
 				scalePointsInput = true;
 			} catch(Exception e){
-				System.out.println(RED + "Please, Enter A Positive Whole Number From 1-4!" + RESET_STYLE);
+				System.out.println(Styles.ERROR_MESSAGE_COLOR + "Please, Enter A Positive Whole Number From 1-4!" + Styles.RESET_STYLE);
 				PaymentCalculator.reader.nextLine();
 				scalePointsInput = false;
 			}
@@ -38,8 +36,6 @@ public class Teacher extends Employee {
 	}
 	 
 	protected void getAmmountOfExamScriptsDone() {
-		String RED = "\u001B[31m";
-		String RESET_STYLE = "\u001B[0m";
 		// get scripts corrected
 		boolean scriptsInput = false;
 		while(scriptsInput != true) {
@@ -54,7 +50,7 @@ public class Teacher extends Employee {
 					scriptsInput = true;
 				}
 			} catch(Exception e){
-				System.out.println(RED + "Please, Enter A Positive Whole Number!"+ RESET_STYLE);
+				System.out.println(Styles.ERROR_MESSAGE_COLOR + "Please, Enter A Positive Whole Number!"+ Styles.RESET_STYLE);
 				PaymentCalculator.reader.nextLine();
 				scriptsInput = false;
 			}

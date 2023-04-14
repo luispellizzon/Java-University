@@ -9,8 +9,6 @@ public class Principal extends Employee {
 	
 	//get number of teachers
 	protected void getNumberOfTeachers() {
-		String RED = "\u001B[31m";
-		String RESET_STYLE = "\u001B[0m";
 		boolean teachersNumberInput = false;
 		while(teachersNumberInput != true) {
 			try {
@@ -33,7 +31,7 @@ public class Principal extends Employee {
 				}
 				teachersNumberInput = true;
 			} catch(Exception e){
-				System.out.println(RED + "Please, Enter 0 Or A Positive Whole Number!" + RESET_STYLE);
+				System.out.println(Styles.ERROR_MESSAGE_COLOR + "Please, Enter 0 Or A Positive Whole Number!" + Styles.RESET_STYLE);
 				PaymentCalculator.reader.nextLine();
 				teachersNumberInput = false;
 			}

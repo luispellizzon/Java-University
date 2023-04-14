@@ -1,7 +1,7 @@
 
 public class FullTime extends Teacher {
 	
-	private static float teacherFullTimeBasicSalary = 3343.58f;
+	private float teacherFullTimeBasicSalary = 3343.58f;
 	private int absentDays;
 	private float absentRate = 62.68f;
 
@@ -10,8 +10,6 @@ public class FullTime extends Teacher {
 	}
 	
 	protected void getAbsentDays() {
-		String RED = "\u001B[31m";
-		String RESET_STYLE = "\u001B[0m";
 		//get absent days
 		boolean absentInput = false;
 		while(absentInput != true) {
@@ -25,7 +23,7 @@ public class FullTime extends Teacher {
 					absentInput = true;
 				}
 			} catch(Exception e){
-				System.out.println(RED + "Please, Enter 0 Or A Positive Whole Number!"+ RESET_STYLE);
+				System.out.println(Styles.ERROR_MESSAGE_COLOR + "Please, Enter 0 Or A Positive Whole Number!"+ Styles.RESET_STYLE);
 				PaymentCalculator.reader.nextLine();
 				absentInput = false;
 			}

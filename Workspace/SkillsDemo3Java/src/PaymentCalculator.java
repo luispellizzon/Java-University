@@ -6,22 +6,19 @@ import java.util.regex.Pattern;
 public class PaymentCalculator {
 	public static Scanner reader = new Scanner(System.in);
 	public static DecimalFormat euroFormat = new DecimalFormat("€###,##0.00");
-	private static char calculatePayment, employeeMenuChoice, menuChoice;
-	private static boolean menuInput, PPSNInput;
+	private static char calculatePayment, menuChoice;
 	private static String PPSN;
 
 	public static void main(String[] args) {
-		String PURPLE_BOLD = "\033[1;35m";
-		String RESET_STYLE = "\u001b[0m";
 		/* WELCOMING THE USER*/
-		System.out.printf("%-20s%s%s",PURPLE_BOLD, "WELCOME TO OUR PAYMENT CALCULATOR SYSTEM!", RESET_STYLE);
+		System.out.printf("%-20s%s%s",Styles.PURPLE_BOLD, "WELCOME TO OUR PAYMENT CALCULATOR SYSTEM!", Styles.RESET_STYLE);
 
 		/* DOWHILE LOOP TO RUN IF USER WANTS TO DO ANOTHER PAYMENT CHECK*/
 		do {
 			getAndCheckPPSNInput();
 			showEmployeeMenuOptionsAndGetUserInput();
 			Employee employee = new Employee();
-			switch(employeeMenuChoice) {
+			switch(menuChoice) {
 			case 'a':
 				employee = new Principal();
 				((Principal) employee).getNumberOfTeachers();				
@@ -51,20 +48,19 @@ public class PaymentCalculator {
 		} while (calculatePayment == 'y');
 		reader.close();
 		/* PRINT GOODBYE MESSAGE TO USER */
-		System.out.printf("\n%s%s%s",PURPLE_BOLD, "THANKS FOR USING OUR PAYMENT CALCULATOR SYSTEM =).", RESET_STYLE);
+		System.out.printf("\n%s%s%s",Styles.PURPLE_BOLD, "THANKS FOR USING OUR PAYMENT CALCULATOR SYSTEM =).", Styles.RESET_STYLE);
 	}
 	
 	private static void getAndCheckPPSNInput() {
-		String RED = "\u001B[31m";
-		String RESET_STYLE = "\u001b[0m";
-		PPSNInput = false;
+
+		boolean PPSNInput = false;
 		while (PPSNInput != true) {
 			try {
 				System.out.print("\nEnter PPSN: ");
 				PPSN = reader.next();
 				
 				if(!checkPPSNPattern(PPSN)) {
-					throw new Exception(RED + "Please, PPSN Should Be 7 Digits Followed By a Letter!\n" + RESET_STYLE);
+					throw new Exception(Styles.ERROR_MESSAGE_COLOR + "Please, PPSN Should Be 7 Digits Followed By a Letter!\n" + Styles.RESET_STYLE);
 				} else {
 					PPSNInput = true;
 				}
@@ -80,10 +76,8 @@ public class PaymentCalculator {
 	
 	// show employee menu and get input
 	private static void showEmployeeMenuOptionsAndGetUserInput() {
-		String RED = "\u001B[31m";
-		String RESET_STYLE = "\u001B[0m";
 		System.out.print("\nPlease, Select One Of The Choices Bellow.\nCalculate Payment For:\nA)Principal\nB)Teacher\n\n");
-		menuInput = false;
+		boolean menuInput = false;
 
 		/* WHILE INPUT IS NOT FALSE KEEP ASKING 
 		 * USER TO ENTER THE INPUT DESIRED*/
@@ -93,7 +87,6 @@ public class PaymentCalculator {
 				menuChoice = reader.next().toLowerCase().charAt(0);
 				
 				if(menuChoice == 'a') {
-					employeeMenuChoice = menuChoice;
 					menuInput = true;
 				} else if(menuChoice == 'b'){
 					while (menuInput != true) {
@@ -101,10 +94,9 @@ public class PaymentCalculator {
 							System.out.print("\nIs The Teacher Full-Time(F) Or Part-Time(P)? Enter F or P: ");
 							menuChoice = reader.next().toLowerCase().charAt(0);
 							if(menuChoice == 'f' || menuChoice == 'p') {
-								employeeMenuChoice = menuChoice;
 								menuInput = true;
 							} else {
-								throw new Exception(RED + "Please, Enter Only F (Full-Time) or P (Part-Time)!" + RESET_STYLE);
+								throw new Exception(Styles.ERROR_MESSAGE_COLOR + "Please, Enter Only F (Full-Time) or P (Part-Time)!" + Styles.RESET_STYLE);
 							}
 						}catch(Exception e) {
 							/* GET ERROR MESSAGE AND PRINT
@@ -114,7 +106,7 @@ public class PaymentCalculator {
 						}
 					}
 				}else {
-					throw new Exception(RED + "Please, Enter Only A (Principal) or B (Teacher)!\n" + RESET_STYLE);
+					throw new Exception(Styles.ERROR_MESSAGE_COLOR + "Please, Enter Only A (Principal) or B (Teacher)!\n" + Styles.RESET_STYLE);
 				}
 			} catch (Exception e) {
 				/* GET ERROR MESSAGE AND PRINT
@@ -138,8 +130,6 @@ public class PaymentCalculator {
 	}
 	
 	private static void askAndCheckForAnotherCalculation() {
-		String RED = "\u001B[31m";
-		String RESET_STYLE = "\u001B[0m";
 		boolean userInput = false;
 		while(userInput != true) {
 			try {
@@ -152,7 +142,7 @@ public class PaymentCalculator {
 				}
 			}
 			catch(Exception e) {
-				System.out.println(RED + "Please, Enter Only Y (YES) Or N (NO)!"+ RESET_STYLE);
+				System.out.println(Styles.ERROR_MESSAGE_COLOR + "Please, Enter Only Y (YES) Or N (NO)!"+ Styles.RESET_STYLE);
 				reader.nextLine();
 				userInput = false;
 			}
