@@ -1,10 +1,9 @@
 
 public class Principal extends Employee {
-	private float principalBasicSalary = 5000.00f;
 	private int teachersNumber;
 	
 	public Principal(){
-		setSalary(principalBasicSalary);
+		setSalary(5000.00f);
 	}
 	
 	//get number of teachers

@@ -21,7 +21,7 @@ public class PaymentCalculator {
 			switch(menuChoice) {
 			case 'a':
 				employee = new Principal();
-				((Principal) employee).getNumberOfTeachers();				
+				((Principal) employee).getNumberOfTeachers();	
 				break;
 			case 'f':
 				employee = new FullTime();
@@ -122,11 +122,12 @@ public class PaymentCalculator {
 		Pattern PPSNpattern = Pattern.compile("^\\d{7}[A-Z]{1}$", Pattern.CASE_INSENSITIVE);
 	    Matcher matcher = PPSNpattern.matcher(ppsnInput);
 	    boolean isPPSN = matcher.find();
-		if(isPPSN) {
+	    return isPPSN;
+	    /*if(isPPSN) {
 			return true;
 		} else {
 			return false;
-		}
+		}*/
 	}
 	
 	private static void askAndCheckForAnotherCalculation() {
@@ -150,3 +151,5 @@ public class PaymentCalculator {
 	}
 	
 }
+
+

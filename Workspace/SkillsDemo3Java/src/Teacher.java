@@ -2,7 +2,8 @@
 public class Teacher extends Employee {
 
 	private int scalePoints, scripts;
-	private float examScriptRate = 10.18f, scriptsPayment;
+	private float scriptsPayment;
+	private final float examScriptRate = 10.18f;
 
 	protected void getScalePoints(){
 		//get scale points
@@ -40,7 +41,7 @@ public class Teacher extends Employee {
 		boolean scriptsInput = false;
 		while(scriptsInput != true) {
 			try {
-				System.out.print("\nEnter Ammount of Exam Scripts Corrected By The Teacher: ");
+				System.out.print("\nEnter Amount of Exam Scripts Corrected By The Teacher: ");
 				scripts = PaymentCalculator.reader.nextInt();
 				if(scripts < 0) {
 					throw new Exception();

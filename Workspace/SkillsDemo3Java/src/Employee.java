@@ -2,7 +2,8 @@
 public class Employee {
 		private String employeePPSN;
 		private float additionalPayment = 0, grossPay, PRSI, monthSalary, averageAnnualIncome,
-		tax, netPay,firstTaxRate = 0.22f, secondTaxRate = 0.42f, PRSIRate = 0.04f;
+		tax, netPay;
+		private final float firstTaxRate = 0.22f, secondTaxRate = 0.42f, PRSIRate = 0.04f;
 
 		
 		// set ppsn
@@ -17,7 +18,7 @@ public class Employee {
 		
 		//set add payment
 		protected void addAdditionalPayment(float employeeAdditionalPayment) {
-			this.additionalPayment = this.additionalPayment + employeeAdditionalPayment;
+			this.additionalPayment += employeeAdditionalPayment;
 		}
 		
 		// set grosspay
@@ -25,17 +26,6 @@ public class Employee {
 			this.grossPay = employeeGrossPay;
 		}
 		
-		protected void displayPaymentDetails(){
-			//display details
-			System.out.print("\u250F" + "\u2501".repeat(55) + "\u2513\n");
-			System.out.printf("\u2503%s%-20s%s%s%-24s\u2503\n",Styles.BLACK_BOLD,"",Styles.UNDERLINE,"PAYMENT DETAILS", Styles.RESET_STYLE );
-			System.out.printf("\u2503%s%-45s%s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"EMPLOYEE'S PPSN:", Styles.RESET_STYLE, this.employeePPSN,"\u2503");
-			System.out.printf("\u2503%s%-45s%s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"GROSS PAY:", Styles.RESET_STYLE, PaymentCalculator.euroFormat.format(this.grossPay),"\u2503");
-			System.out.printf("\u2503%s%-45s%s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"PRSI:", Styles.RESET_STYLE, PaymentCalculator.euroFormat.format(this.PRSI),"\u2503");
-			System.out.printf("\u2503%s%-45s%s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"TAX:", Styles.RESET_STYLE, PaymentCalculator.euroFormat.format(this.tax),"\u2503");
-			System.out.printf("\u2503%s%-45s%s%-10s\u2503\n",Styles.BLACK_BOLD,"NET PAY:", Styles.RESET_STYLE, PaymentCalculator.euroFormat.format(this.netPay));
-			System.out.print("\u2517" + "\u2501".repeat(55)+"\u251B");
-		}
 		//cal grosspay
 		protected void calculateGrossPay() {
 			this.grossPay = monthSalary + additionalPayment;
@@ -60,5 +50,17 @@ public class Employee {
 		// cal netpay
 		protected void calculateNetPay() {
 			netPay = grossPay - tax - PRSI;
+		}
+		
+		protected void displayPaymentDetails(){
+			//display details
+			System.out.print("\u250F" + "\u2501".repeat(55) + "\u2513\n");
+			System.out.printf("\u2503%s%-20s%s%s%-24s\u2503\n",Styles.BLACK_BOLD,"",Styles.UNDERLINE,"PAYMENT DETAILS", Styles.RESET_STYLE );
+			System.out.printf("\u2503%s%-45s%s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"EMPLOYEE'S PPSN:", Styles.RESET_STYLE, this.employeePPSN,"\u2503");
+			System.out.printf("\u2503%s%-45s%s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"GROSS PAY:", Styles.RESET_STYLE, PaymentCalculator.euroFormat.format(this.grossPay),"\u2503");
+			System.out.printf("\u2503%s%-45s%s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"PRSI:", Styles.RESET_STYLE, PaymentCalculator.euroFormat.format(this.PRSI),"\u2503");
+			System.out.printf("\u2503%s%-45s%s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"TAX:", Styles.RESET_STYLE, PaymentCalculator.euroFormat.format(this.tax),"\u2503");
+			System.out.printf("\u2503%s%-45s%s%-10s\u2503\n",Styles.BLACK_BOLD,"NET PAY:", Styles.RESET_STYLE, PaymentCalculator.euroFormat.format(this.netPay));
+			System.out.print("\u2517" + "\u2501".repeat(55)+"\u251B");
 		}
 }

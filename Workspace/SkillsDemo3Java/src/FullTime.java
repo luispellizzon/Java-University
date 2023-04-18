@@ -1,12 +1,11 @@
 
 public class FullTime extends Teacher {
 	
-	private float teacherFullTimeBasicSalary = 3343.58f;
 	private int absentDays;
-	private float absentRate = 62.68f;
+	private final float absentRate = 62.68f;
 
 	public FullTime(){
-		setSalary(teacherFullTimeBasicSalary);
+		setSalary(3343.58f);
 	}
 	
 	protected void getAbsentDays() {
@@ -31,7 +30,7 @@ public class FullTime extends Teacher {
 	}
 	
 	protected void discountAbsentDaysPayment(float absentDaysToDiscount) {
-		setSalary((teacherFullTimeBasicSalary - absentDaysToDiscount));
+		setSalary((3343.58f - absentDaysToDiscount));
 	}
 	
 }

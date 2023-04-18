@@ -1,13 +1,14 @@
 
 public class PartTime extends Teacher{
-	private float hours, hourRate = 34.03f;
+	private float hours;
+	private final float hourRate = 34.03f;
 
 	protected void getHoursWorked() {
 		//get hours 
 		boolean hoursInput = false;
 		while(hoursInput != true) {
 			try {
-				System.out.print("\nEnter Ammount Of Hours Worked: ");
+				System.out.print("\nEnter Amount Of Hours Worked: ");
 				hours = PaymentCalculator.reader.nextFloat();
 				if(hours < 0) {
 					throw new Exception();
