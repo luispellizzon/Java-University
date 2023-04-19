@@ -12,11 +12,8 @@ public class PaymentCalculator {
 
 	public static void main(String[] args) {
 		/* WELCOMING THE USER*/
-//		System.out.printf("%-20s%s%s",Styles.PURPLE_BOLD, "WELCOME TO OUR PAYMENT CALCULATOR SYSTEM!", Styles.RESET_STYLE);
-		System.out.println("\u2503");
-		System.out.println("\u2503");
-		System.out.println("\u2503");
-		System.out.println("\u2503");
+		System.out.printf("%-20s%s%s",Styles.PURPLE_BOLD, "WELCOME TO OUR PAYMENT CALCULATOR SYSTEM!", Styles.RESET_STYLE);
+
 
 		/* DOWHILE LOOP TO RUN IF USER WANTS TO DO ANOTHER PAYMENT CHECK*/
 		do {
