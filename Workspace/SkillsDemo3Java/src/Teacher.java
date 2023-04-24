@@ -2,7 +2,7 @@
 public class Teacher extends Employee {
 
 	private int scalePoints, scripts;
-	private float scriptsPayment;
+	private float scriptsPayment, scriptBonus;
 	private final float examScriptRate = 10.18f;
 	/* GET TEACHER'S POINT ON SALARY SCALE  */
 	protected void getScalePoints(){
@@ -20,16 +20,20 @@ public class Teacher extends Employee {
 					throw new Exception();
 				}
 				if(scalePoints == 1) {
-					addAdditionalPayment(426.67f);
+					scriptBonus = 426.67f;
+					addAdditionalPayment(scriptBonus);
 				}
 				if(scalePoints == 2){
-					addAdditionalPayment(565.75f);
+					scriptBonus = 565.75f;
+					addAdditionalPayment(scriptBonus);
 				}
 				if(scalePoints == 3){
-					addAdditionalPayment(666.58f);
+					scriptBonus = 666.58f;
+					addAdditionalPayment(scriptBonus);
 				}
 				if(scalePoints == 4){
-					addAdditionalPayment(750.00f);
+					scriptBonus = 750.00f;
+					addAdditionalPayment(scriptBonus);
 				}
 				scalePointsInput = true;
 			} catch(Exception e){
@@ -70,5 +74,16 @@ public class Teacher extends Employee {
 				scriptsInput = false;
 			}
 		}
+	}
+	
+	/*PRINT SCRIPT BONUS DETAILS*/
+	protected void getScriptsDetails() {
+		String middleString = (scripts + " * €10.18");
+		System.out.printf("\u2503%s%-10s%-19s%-20s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"SCRIPTS:", Styles.RESET_STYLE, middleString, PaymentCalculator.euroFormat.format(scriptsPayment), "\u2503");
+	}
+	
+	/*PRINT SCALE BONUS DETAILS*/
+	protected void getScalePointsDetails() {
+		System.out.printf("\u2503%s%-10s%-19s%-17d%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"SCALE POINTS:", Styles.RESET_STYLE, scalePoints, PaymentCalculator.euroFormat.format(scriptBonus), "\u2503");
 	}
 }

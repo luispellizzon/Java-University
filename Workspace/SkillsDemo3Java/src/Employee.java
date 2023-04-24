@@ -1,4 +1,5 @@
 
+
 public class Employee {
 		private String employeePPSN;
 		private float additionalPayment = 0, grossPay, PRSI, monthSalary, averageAnnualIncome,
@@ -63,7 +64,6 @@ public class Employee {
 		protected void displayPaymentDetails(){
 			/* DISPLAY PROFESSIONAL OUTPUT 
 			 * BOLD BORDER, BOLD FONTS AND CURRENCY FORMAT*/
-			System.out.print("\u250F" + "\u2501".repeat(55) + "\u2513\n");
 			System.out.printf("\u2503%s%-20s%s%s%-24s\u2503\n",Styles.BLACK_BOLD,"",Styles.UNDERLINE,"PAYMENT DETAILS", Styles.RESET_STYLE );
 			System.out.printf("\u2503%s%-45s%s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"EMPLOYEE'S PPSN:", Styles.RESET_STYLE, this.employeePPSN,"\u2503");
 			System.out.printf("\u2503%s%-45s%s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"GROSS PAY:", Styles.RESET_STYLE, PaymentCalculator.euroFormat.format(this.grossPay),"\u2503");

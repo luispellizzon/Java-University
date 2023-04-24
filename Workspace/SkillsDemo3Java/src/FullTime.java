@@ -17,7 +17,7 @@ public class FullTime extends Teacher {
 		boolean absentInput = false;
 		while(absentInput != true) {
 			try {
-				System.out.print("\nEnter Ammount Of Absent Days: ");
+				System.out.print("\nEnter Amount Of Absent Days: ");
 				absentDays = PaymentCalculator.reader.nextInt();
 				if(absentDays < 0) {
 					throw new Exception();
@@ -42,6 +42,17 @@ public class FullTime extends Teacher {
 		/* CALL setSalary FUNCTION TO SET FULL-TIME TEACHER EMPLOYEE.
 		 * IT WILL NOT DISCOUNT IF THE TEACHER WAS NOT ABSENT*/
 		setSalary((3343.58f - absentDaysToDiscount));
+	}
+	
+	/* PRINT FULLTIME TEACHER GROSS PAY DETAILS */
+	protected void printGrossPayDetails() {
+		System.out.print("\u250F" + "\u2501".repeat(55) + "\u2513\n");
+		System.out.printf("\u2503%s%-16s%s%s%-22s\u2503\n",Styles.BLACK_BOLD,"",Styles.UNDERLINE,"GROSS PAY DESCRIPTION", Styles.RESET_STYLE );
+		System.out.printf("\u2503%s%-45s%s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"BASIC SALARY:", Styles.RESET_STYLE, PaymentCalculator.euroFormat.format(3343.58f),"\u2503");
+		getScriptsDetails();
+		getScalePointsDetails();
+		String middleString = absentDays + " * €62.68";
+		System.out.printf("\u2503%s%-10s%-17s%-20s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"ABSENT DAYS:", Styles.RESET_STYLE, middleString, PaymentCalculator.euroFormat.format(-(absentDays * absentRate)), "\u2503");
 	}
 }
 

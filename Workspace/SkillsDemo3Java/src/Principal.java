@@ -1,7 +1,7 @@
 
 public class Principal extends Employee {
 	private int teachersNumber;
-	
+	private float principalBonus;
 	/* CONSTRUCTOR INITIALIZING PRINCIPAL'S SALARY */
 	public Principal(){
 		setSalary(5000.00f);
@@ -23,16 +23,20 @@ public class Principal extends Employee {
 					throw new Exception();
 				}
 				if(teachersNumber >= 200) {
-					addAdditionalPayment(1196.67f);
+					principalBonus = 1196.67f;
+					addAdditionalPayment(principalBonus);
 				}
 				else if(teachersNumber >= 100){
-					addAdditionalPayment(1019.83f);
+					principalBonus = 1019.83f;
+					addAdditionalPayment(principalBonus);
 				}
 				else if(teachersNumber >= 10) {
-					addAdditionalPayment(869.33f);
+					principalBonus = 869.33f;
+					addAdditionalPayment(principalBonus);
 				}
 				else {
-					addAdditionalPayment(775.83f);
+					principalBonus = 775.83f;
+					addAdditionalPayment(principalBonus);
 				}
 				teachersNumberInput = true;
 			} catch(Exception e){
@@ -42,5 +46,13 @@ public class Principal extends Employee {
 				teachersNumberInput = false;
 			}
 		}
+	}
+	
+	/* PRINT PRINCIPAL GROSS PAY DETAILS */
+	protected void printGrossPayDetails() {
+		System.out.print("\u250F" + "\u2501".repeat(55) + "\u2513\n");
+		System.out.printf("\u2503%s%-16s%s%s%-22s\u2503\n",Styles.BLACK_BOLD,"",Styles.UNDERLINE,"GROSS PAY DESCRIPTION", Styles.RESET_STYLE );
+		System.out.printf("\u2503%s%-45s%s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"BASIC SALARY:", Styles.RESET_STYLE, PaymentCalculator.euroFormat.format(5000.00f),"\u2503");
+		System.out.printf("\u2503%s%-45s%s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"TEACHERS EMPLOYED:", Styles.RESET_STYLE, PaymentCalculator.euroFormat.format(this.principalBonus),"\u2503");
 	}
 }

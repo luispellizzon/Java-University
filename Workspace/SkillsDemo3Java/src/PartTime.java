@@ -29,4 +29,16 @@ public class PartTime extends Teacher{
 			}
 		}
 	}
+	
+	/* PRINT PARTIME TEACHER GROSS PAY DETAILS */
+	protected void printGrossPayDetails() {
+		System.out.print("\u250F" + "\u2501".repeat(55) + "\u2513\n");
+		System.out.printf("\u2503%s%-16s%s%s%-22s\u2503\n",Styles.BLACK_BOLD,"",Styles.UNDERLINE,"GROSS PAY DESCRIPTION", Styles.RESET_STYLE );
+		System.out.print("\u2503" + " ".repeat(55) + "\u2503\n");
+		String middleString = hours + " * €34.03";
+		System.out.printf("\u2503%s%-10s%-19s%-20s%-10s\u2503\n%-56s\u2503\n",Styles.BLACK_BOLD,"HOURS:", Styles.RESET_STYLE, middleString, PaymentCalculator.euroFormat.format((hours * hourRate)), "\u2503");
+		getScriptsDetails();
+		getScalePointsDetails();
+	}
+	
 }

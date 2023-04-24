@@ -10,7 +10,7 @@ public class PaymentCalculator {
 	private static char calculatePayment, menuChoice;
 	private static String PPSN;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		/* WELCOMING THE USER*/
 		System.out.printf("%-20s%s%s",Styles.PURPLE_BOLD, "WELCOME TO OUR PAYMENT CALCULATOR SYSTEM!", Styles.RESET_STYLE);
 
@@ -76,9 +76,19 @@ public class PaymentCalculator {
 			employee.calculateTax();
 			/*CALCULATE EMPLOYEE'S TAKE-HOME PAY (NETPAY)*/
 			employee.calculateNetPay();
+			switch(menuChoice) {
+			case 'a':
+				((Principal)employee).printGrossPayDetails();
+				break;
+			case 'f':
+				((FullTime)employee).printGrossPayDetails();
+				break;
+			case 'p':
+				((PartTime)employee).printGrossPayDetails();
+				break;
+			}
 			/*DISPLAY PROFESSIONAL PAYMENT DETAILS (PAYSLIP)*/
 			employee.displayPaymentDetails();
-
 			/*ASK IF USER WANTS TO SEE ANY FURTHER PAYMENTS*/
 			askAndCheckForAnotherCalculation();
 			
@@ -90,6 +100,7 @@ public class PaymentCalculator {
 		System.out.printf("\n%s%s%s",Styles.PURPLE_BOLD, "THANKS FOR USING OUR PAYMENT CALCULATOR SYSTEM =).", Styles.RESET_STYLE);
 	}
 	
+
 	/* GET PPSN INPUT FROM USER AND CHECK IF MEETS THE REQUIREMENTS*/
 	private static void getAndCheckPPSNInput() {
 		/* WHILE LOOP WITH TRY CATCH 
